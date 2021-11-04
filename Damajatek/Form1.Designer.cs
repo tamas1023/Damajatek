@@ -77,6 +77,7 @@
             this.startBTN.TabIndex = 4;
             this.startBTN.Text = "Start";
             this.startBTN.UseVisualStyleBackColor = true;
+            this.startBTN.Click += new System.EventHandler(this.startBTN_Click);
             // 
             // keszitokBTN
             // 

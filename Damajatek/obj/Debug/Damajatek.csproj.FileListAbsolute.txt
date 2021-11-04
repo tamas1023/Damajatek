@@ -1,0 +1,10 @@
+D:\2_14_github\dama\Damajatek\bin\Debug\Damajatek.exe.config
+D:\2_14_github\dama\Damajatek\bin\Debug\Damajatek.exe
+D:\2_14_github\dama\Damajatek\bin\Debug\Damajatek.pdb
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.csprojAssemblyReference.cache
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.Form1.resources
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.Properties.Resources.resources
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.csproj.GenerateResource.cache
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.csproj.CoreCompileInputs.cache
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.exe
+D:\2_14_github\dama\Damajatek\obj\Debug\Damajatek.pdb
