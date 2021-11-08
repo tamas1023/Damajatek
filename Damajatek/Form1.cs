@@ -98,5 +98,84 @@ namespace Damajatek
         {
 
         }
+
+        private void keszitokBTN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void leirasBTN_Click(object sender, EventArgs e)
+        {
+            /*A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.
+            A játékosok felváltva lépnek egy - egy gyaloggal az alábbiak szerint:
+            Csak átlósan lehet lépni, ugyanolyan színű mezőre, amilyenen a bábu eredetileg is állt.
+            Nem szabad olyan mezőre lépni, amelyen már van egy másik bábu.
+            A gyalog csak az ellenfél felé(előre léphet), visszafelé nem.
+            A gyalog egyszerre csak egyet léphet.
+            Saját bábut nem lehet sem leütni, sem átugorni.
+            Amikor az ellenfelek bábui „találkoznak”, kétféle helyzet állhat elő:
+            Ha az ellenfél bábuja mögött (ugyanabban az irányban továbbhaladva) van egy üres mező,
+            akkor a játékos a saját bábujával átugorja azt, majd leveszi a tábláról. Ezt nevezik ütésnek.
+            A dámát általában ütéskényszerrel játsszák.
+             A fenti szabályokból következik, hogy abban az esetben viszont,
+            ha az ellenfél bábuja mögött nincs üres mező (mert egy másik bábu áll ott vagy vége van a táblának),
+            akkor nem lehet leütni. Amíg a helyzet nem változik,
+            a játékos ebben az irányban nem tud továbbhaladni.
+            Az a gyalog, amely az ellenfél sorfalán áttörve eléri a tábla szemközti oldalát,dámává változik. 
+            A dámát láthatóan megkülönböztetik a gyalogoktól – például a korongra rátesznek még egyet a levettek közül,
+            vagy ha sakkfigurákkal játszanak, a gyalogot valamilyen tisztre cserélik.
+            A dáma ezután visszafelé is léphet és üthet, de minden más szabályt be kell tartania (saját bábut nem léphet át,
+            olyan mezőre nem léphet, ahol már van egy bábu, stb.). A dámát ugyanúgy le lehet ütni, mint a gyalogot.
+            A játék addig folytatódik, amíg az egyik játékos nem tud lépni – vagy azért,
+            mert minden bábuját levette az ellenfél, vagy azért, mert a maradék bábui közül eggyel sem tud lépni.
+             
+             
+             
+             
+             
+             
+             */
+        }
+
+
+        private void mouseEnter(Button button)
+        {
+            button.BackColor = Color.Goldenrod;
+            button.ForeColor = Color.Blue;
+        }
+        private void mouseLeave(Button button)
+        {
+            button.BackColor = Color.Tomato;
+            button.ForeColor = Color.Black;
+        }
+        private void startBTN_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouseEnter(startBTN);
+        }
+
+        private void startBTN_MouseLeave(object sender, EventArgs e)
+        {
+            mouseLeave(startBTN);
+        }
+
+        private void keszitokBTN_MouseLeave(object sender, EventArgs e)
+        {
+            mouseLeave(keszitokBTN);
+        }
+
+        private void keszitokBTN_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouseEnter(keszitokBTN);
+        }
+
+        private void leirasBTN_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouseEnter(leirasBTN);
+        }
+
+        private void leirasBTN_MouseLeave(object sender, EventArgs e)
+        {
+            mouseLeave(leirasBTN);
+        }
     }
 }
