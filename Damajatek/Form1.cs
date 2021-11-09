@@ -19,22 +19,50 @@ namespace Damajatek
             InitializeComponent();
             //damak feltöltése fele fehér fele fekete
             damafeltoltes();
-            tablageneralas();
+
         }
 
         private void tablageneralas()
         {
+            int db = 0;
+            int db2 = 0;
             for (int i = 0; i < 8; i++)
             {
                 //i megy soronként
                 for (int j = 0; j < 8; j++)
                 {
+                   
                     // j megyoszloponként
                     PictureBox kep = new PictureBox();
                     kep.Location = new System.Drawing.Point(20+(i*50),20+(j*50));
                     kep.Name =j+"";
                     kep.Visible = true;
                     kep.Size = new System.Drawing.Size(50, 50);
+                    if(j<=2&&j>=0)
+                    {
+                        db++;
+                        if(db==8)
+                        {
+                            db = 0;
+                        }
+                        if(db%2==1)
+                        {
+                            kep.Image = Image.FromFile("feher.png");
+                        }
+                       
+                    }
+                    if(j<=7&&j>=5)
+                    {
+                        db2++;
+                        if (db2 == 8)
+                        {
+                            db2 = 0;
+                        }
+                        if (db2 % 2 == 0)
+                        {
+                            kep.Image = Image.FromFile("fekete.png");
+                        }
+                    }
                     if (i%2==0)
                     {
                         if (j%2==0)
@@ -59,16 +87,21 @@ namespace Damajatek
                         }
                     }
                     kep.Tag = i + "";
-                    kep.Image = Image.FromFile("feher.png");
+                    
                     kep.SizeMode = PictureBoxSizeMode.StretchImage;
                     Controls.Add(kep);
                     //kep.BringToFront();
 
-                    //kep.Click += new System.EventHandler(this.palyaklikk);
+                    kep.Click += new System.EventHandler(this.palyaklikk);
                 }
             }
             panel2.SendToBack();
             pictureBox4.BringToFront();
+        }
+
+        private void palyaklikk(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void damafeltoltes()
@@ -96,7 +129,19 @@ namespace Damajatek
 
         private void startBTN_Click(object sender, EventArgs e)
         {
+            tablageneralas();
+            gametablefeltoltes();
+        }
 
+        private void gametablefeltoltes()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+
+                }
+            }
         }
 
         private void keszitokBTN_Click(object sender, EventArgs e)
