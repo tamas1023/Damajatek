@@ -14,6 +14,8 @@ namespace Damajatek
     {
         static Dama [] damak=new Dama[24];
         static Dama[,] gametable = new Dama[8, 8];
+        static string nev1;
+        static string nev2;
         public Form1()
         {
             InitializeComponent();
@@ -129,8 +131,32 @@ namespace Damajatek
 
         private void startBTN_Click(object sender, EventArgs e)
         {
-            tablageneralas();
-            gametablefeltoltes();
+            
+            nev1 = nev1TBOX.Text;
+            nev2 = nev2TBOX.Text;
+            if (nev1=="" || nev2=="")
+            {
+                infoLBL.Text = "Valakinek nincsen neve!";
+
+            }
+            else
+            {
+                if (nev1 == nev2)
+                {
+                    infoLBL.Text = "Ne adjatok meg \nugyanolyan nevet!";
+                }
+                else
+                {
+                    infoLBL.Text = "";
+                    keszitokBTN.Visible = false;
+                    leirasBTN.Visible = false;
+                    visszaBTN.Visible = true;
+                    tablageneralas();
+                    gametablefeltoltes();
+                }
+            }
+           
+            
         }
 
         private void gametablefeltoltes()
@@ -151,6 +177,25 @@ namespace Damajatek
 
         private void leirasBTN_Click(object sender, EventArgs e)
         {
+            if (leirasBTN.Text=="Leírás")
+            {
+                label1.Visible = false;
+                label2.Visible = false;
+                nev1TBOX.Visible = false;
+                nev2TBOX.Visible = false;
+                visszaBTN.Visible = false;
+                keszitokBTN.Visible = false;
+                startBTN.Visible = false;
+                infoLBL.Location = new Point(5, 5);
+                infoLBL.Visible = true;
+                infoLBL.Text = "A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.";
+                
+            }
+            else
+            {
+                infoLBL.Location=new Point(14, 202);
+                
+            }
             /*A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.
             A játékosok felváltva lépnek egy - egy gyaloggal az alábbiak szerint:
             Csak átlósan lehet lépni, ugyanolyan színű mezőre, amilyenen a bábu eredetileg is állt.
@@ -173,12 +218,7 @@ namespace Damajatek
             olyan mezőre nem léphet, ahol már van egy bábu, stb.). A dámát ugyanúgy le lehet ütni, mint a gyalogot.
             A játék addig folytatódik, amíg az egyik játékos nem tud lépni – vagy azért,
             mert minden bábuját levette az ellenfél, vagy azért, mert a maradék bábui közül eggyel sem tud lépni.
-             
-             
-             
-             
-             
-             
+
              */
         }
 

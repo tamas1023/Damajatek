@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nev1TBX = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nev2TBOX = new System.Windows.Forms.TextBox();
+            this.nev1TBOX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.startBTN = new System.Windows.Forms.Button();
@@ -41,6 +41,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.visszaBTN = new System.Windows.Forms.Button();
+            this.infoLBL = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -49,21 +51,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // nev1TBX
+            // nev2TBOX
             // 
-            this.nev1TBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.nev1TBX.Location = new System.Drawing.Point(142, 149);
-            this.nev1TBX.Name = "nev1TBX";
-            this.nev1TBX.Size = new System.Drawing.Size(100, 29);
-            this.nev1TBX.TabIndex = 0;
+            this.nev2TBOX.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.nev2TBOX.Location = new System.Drawing.Point(142, 149);
+            this.nev2TBOX.Name = "nev2TBOX";
+            this.nev2TBOX.Size = new System.Drawing.Size(100, 29);
+            this.nev2TBOX.TabIndex = 0;
             // 
-            // textBox1
+            // nev1TBOX
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(142, 82);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 29);
-            this.textBox1.TabIndex = 1;
+            this.nev1TBOX.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.nev1TBOX.Location = new System.Drawing.Point(142, 82);
+            this.nev1TBOX.Name = "nev1TBOX";
+            this.nev1TBOX.Size = new System.Drawing.Size(100, 29);
+            this.nev1TBOX.TabIndex = 1;
             // 
             // label1
             // 
@@ -105,7 +107,7 @@
             // 
             this.keszitokBTN.BackColor = System.Drawing.Color.Tomato;
             this.keszitokBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.keszitokBTN.Location = new System.Drawing.Point(71, 233);
+            this.keszitokBTN.Location = new System.Drawing.Point(71, 301);
             this.keszitokBTN.Name = "keszitokBTN";
             this.keszitokBTN.Size = new System.Drawing.Size(100, 40);
             this.keszitokBTN.TabIndex = 5;
@@ -119,7 +121,7 @@
             // 
             this.leirasBTN.BackColor = System.Drawing.Color.Tomato;
             this.leirasBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.leirasBTN.Location = new System.Drawing.Point(71, 306);
+            this.leirasBTN.Location = new System.Drawing.Point(71, 360);
             this.leirasBTN.Name = "leirasBTN";
             this.leirasBTN.Size = new System.Drawing.Size(100, 40);
             this.leirasBTN.TabIndex = 5;
@@ -132,11 +134,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Turquoise;
+            this.panel1.Controls.Add(this.infoLBL);
+            this.panel1.Controls.Add(this.visszaBTN);
             this.panel1.Controls.Add(this.startBTN);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.nev1TBOX);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.keszitokBTN);
-            this.panel1.Controls.Add(this.nev1TBX);
+            this.panel1.Controls.Add(this.nev2TBOX);
             this.panel1.Controls.Add(this.leirasBTN);
             this.panel1.Location = new System.Drawing.Point(528, 12);
             this.panel1.Name = "panel1";
@@ -164,6 +168,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 3;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Visible = false;
             // 
             // pictureBox3
             // 
@@ -174,6 +179,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 2;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
             // 
             // pictureBox2
             // 
@@ -184,6 +190,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 1;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // pictureBox1
             // 
@@ -194,6 +201,28 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
+            // 
+            // visszaBTN
+            // 
+            this.visszaBTN.BackColor = System.Drawing.Color.Tomato;
+            this.visszaBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.visszaBTN.Location = new System.Drawing.Point(72, 247);
+            this.visszaBTN.Name = "visszaBTN";
+            this.visszaBTN.Size = new System.Drawing.Size(100, 40);
+            this.visszaBTN.TabIndex = 6;
+            this.visszaBTN.Text = "Vissza";
+            this.visszaBTN.UseVisualStyleBackColor = false;
+            this.visszaBTN.Visible = false;
+            // 
+            // infoLBL
+            // 
+            this.infoLBL.AutoSize = true;
+            this.infoLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoLBL.Location = new System.Drawing.Point(14, 202);
+            this.infoLBL.Name = "infoLBL";
+            this.infoLBL.Size = new System.Drawing.Size(0, 20);
+            this.infoLBL.TabIndex = 7;
             // 
             // Form1
             // 
@@ -221,8 +250,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox nev1TBX;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nev2TBOX;
+        private System.Windows.Forms.TextBox nev1TBOX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button startBTN;
@@ -234,6 +263,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button visszaBTN;
+        private System.Windows.Forms.Label infoLBL;
     }
 }
 

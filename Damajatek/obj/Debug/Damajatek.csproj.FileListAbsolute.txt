@@ -38,3 +38,13 @@ D:\András\asztali_14\dama\Damajatek\obj\Debug\Damajatek.csproj.GenerateResource
 D:\András\asztali_14\dama\Damajatek\obj\Debug\Damajatek.csproj.CoreCompileInputs.cache
 D:\András\asztali_14\dama\Damajatek\obj\Debug\Damajatek.exe
 D:\András\asztali_14\dama\Damajatek\obj\Debug\Damajatek.pdb
+D:\GIT\214_SZFT\Damajatek\Damajatek\bin\Debug\Damajatek.exe.config
+D:\GIT\214_SZFT\Damajatek\Damajatek\bin\Debug\Damajatek.exe
+D:\GIT\214_SZFT\Damajatek\Damajatek\bin\Debug\Damajatek.pdb
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.csproj.AssemblyReference.cache
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.Form1.resources
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.Properties.Resources.resources
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.csproj.GenerateResource.cache
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.csproj.CoreCompileInputs.cache
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.exe
+D:\GIT\214_SZFT\Damajatek\Damajatek\obj\Debug\Damajatek.pdb
