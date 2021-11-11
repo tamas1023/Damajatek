@@ -231,7 +231,10 @@ namespace Damajatek
         private void Form1_Load(object sender, EventArgs e)
         {
             Button newbutton = new Button();
-            
+            //loading animation??
+            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
+            // esetleg új Form1 vagy usercontrol
+
         }
 
         private void startBTN_Click(object sender, EventArgs e)
