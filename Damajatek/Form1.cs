@@ -12,8 +12,18 @@ namespace Damajatek
 {
     public partial class Form1 : Form
     {
+       // static int kijon; ha le kellene programozni hogy egymás után jönnek a játékosok (forceolva lenne hogy fekete után fehér jöjjön)
+        static int menyikkep;
+        static bool kapcs = true;
+        static int honnani;
+       static int honnanj; 
+        static int hovai;
+         static int hovaj;
         static Dama [] damak=new Dama[24];
-        static Dama[,] gametable = new Dama[8, 8];
+
+        // static Dama[,] gametable = new Dama[8, 8];
+        static PictureBox[,] kepek = new PictureBox[8,8];
+        static int[,] dama = new int[8, 8];
         static string nev1;
         static string nev2;
         public Form1()
@@ -50,6 +60,7 @@ namespace Damajatek
                         if(db%2==1)
                         {
                             kep.Image = Image.FromFile("feher.png");
+                            dama[i, j] = 1;
                         }
                        
                     }
@@ -63,6 +74,7 @@ namespace Damajatek
                         if (db2 % 2 == 0)
                         {
                             kep.Image = Image.FromFile("fekete.png");
+                            dama[i, j] = 2;
                         }
                     }
                     if (i%2==0)
@@ -88,10 +100,11 @@ namespace Damajatek
                             kep.BackColor = Color.White;
                         }
                     }
-                    kep.Tag = i + "";
+                    kep.Tag = i;
                     
                     kep.SizeMode = PictureBoxSizeMode.StretchImage;
                     Controls.Add(kep);
+                    kepek[i, j] = kep;
                     //kep.BringToFront();
 
                     kep.Click += new System.EventHandler(this.palyaklikk);
@@ -103,7 +116,63 @@ namespace Damajatek
 
         private void palyaklikk(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            PictureBox kapcsolt = sender as PictureBox;
+           
+            if (kapcs&&kapcsolt.Image!=null)
+            {
+                honnani = Convert.ToInt32(kapcsolt.Tag);
+                honnanj = Convert.ToInt32(kapcsolt.Name);
+               
+               
+                switch(dama[honnani,honnanj])
+                {
+                    case 1:
+                        menyikkep = 1;
+                        break;
+                    case 2:
+                        menyikkep = 2;
+                        break;
+                    case -1:
+                        menyikkep = -1;
+                        break;
+                    case -2:
+                        menyikkep = -2;
+                        break;
+                }
+                kapcs = false;
+            }
+            else if(!kapcs&&kapcsolt.Image==null&&(Convert.ToInt32(kapcsolt.Tag)<=honnani+1&&Convert.ToInt32(kapcsolt.Tag)>=honnani-1))
+            {
+                hovai = Convert.ToInt32(kapcsolt.Tag);
+                hovaj = Convert.ToInt32(kapcsolt.Name);
+                switch(menyikkep)
+                {
+                    case 1:
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = 1;
+                        kapcsolt.Image = Image.FromFile("feher.png");
+                        kepek[honnani, honnanj].Image = null;
+                        break;
+                    case 2:
+                        dama[hovai, hovaj] = 2;
+                        kapcsolt.Image = Image.FromFile("fekete.png");
+                        kepek[honnani, honnanj].Image = null;
+                        break;
+                    case -1:
+                        dama[hovai, hovaj] = -1;
+                        kapcsolt.Image = Image.FromFile("feherd.png");
+                        kepek[honnani, honnanj].Image = null;
+                        break;
+                    case -2:
+                        dama[hovai, hovaj] = -2;
+                        kapcsolt.Image = Image.FromFile("feketed.png");
+                        kepek[honnani, honnanj].Image = null;
+                        break;
+                }
+                kapcs = true;
+            }
+
+
         }
 
         private void damafeltoltes()
