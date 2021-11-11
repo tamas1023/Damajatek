@@ -36,13 +36,13 @@
             this.keszitokBTN = new System.Windows.Forms.Button();
             this.leirasBTN = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.infoLBL = new System.Windows.Forms.Label();
+            this.visszaBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.visszaBTN = new System.Windows.Forms.Button();
-            this.infoLBL = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -100,6 +100,7 @@
             this.startBTN.Text = "Start";
             this.startBTN.UseVisualStyleBackColor = false;
             this.startBTN.Click += new System.EventHandler(this.startBTN_Click);
+            this.startBTN.Paint += new System.Windows.Forms.PaintEventHandler(this.startBTN_Paint);
             this.startBTN.MouseLeave += new System.EventHandler(this.startBTN_MouseLeave);
             this.startBTN.MouseMove += new System.Windows.Forms.MouseEventHandler(this.startBTN_MouseMove);
             // 
@@ -146,6 +147,27 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(245, 426);
             this.panel1.TabIndex = 6;
+            // 
+            // infoLBL
+            // 
+            this.infoLBL.AutoSize = true;
+            this.infoLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.infoLBL.Location = new System.Drawing.Point(14, 202);
+            this.infoLBL.Name = "infoLBL";
+            this.infoLBL.Size = new System.Drawing.Size(0, 20);
+            this.infoLBL.TabIndex = 7;
+            // 
+            // visszaBTN
+            // 
+            this.visszaBTN.BackColor = System.Drawing.Color.Tomato;
+            this.visszaBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.visszaBTN.Location = new System.Drawing.Point(72, 247);
+            this.visszaBTN.Name = "visszaBTN";
+            this.visszaBTN.Size = new System.Drawing.Size(100, 40);
+            this.visszaBTN.TabIndex = 6;
+            this.visszaBTN.Text = "Vissza";
+            this.visszaBTN.UseVisualStyleBackColor = false;
+            this.visszaBTN.Visible = false;
             // 
             // panel2
             // 
@@ -202,27 +224,6 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
-            // 
-            // visszaBTN
-            // 
-            this.visszaBTN.BackColor = System.Drawing.Color.Tomato;
-            this.visszaBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.visszaBTN.Location = new System.Drawing.Point(72, 247);
-            this.visszaBTN.Name = "visszaBTN";
-            this.visszaBTN.Size = new System.Drawing.Size(100, 40);
-            this.visszaBTN.TabIndex = 6;
-            this.visszaBTN.Text = "Vissza";
-            this.visszaBTN.UseVisualStyleBackColor = false;
-            this.visszaBTN.Visible = false;
-            // 
-            // infoLBL
-            // 
-            this.infoLBL.AutoSize = true;
-            this.infoLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.infoLBL.Location = new System.Drawing.Point(14, 202);
-            this.infoLBL.Name = "infoLBL";
-            this.infoLBL.Size = new System.Drawing.Size(0, 20);
-            this.infoLBL.TabIndex = 7;
             // 
             // Form1
             // 
