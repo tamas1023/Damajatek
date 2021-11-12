@@ -21,6 +21,7 @@ namespace Damajatek
         static int hovai;
          static int hovaj;
         static Dama [] damak=new Dama[24];
+        static RoundedButton startbutton = new RoundedButton();
 
         // static Dama[,] gametable = new Dama[8, 8];
         static PictureBox[,] kepek = new PictureBox[8,8];
@@ -32,7 +33,34 @@ namespace Damajatek
             InitializeComponent();
             //damak feltöltése fele fehér fele fekete
             damafeltoltes();
+            buttongeneralas();
+        }
 
+        private void buttongeneralas()
+        {
+            startbutton.Size = new Size(100, 40);
+            //startbutton.Location = new Point(615, 20);
+            startbutton.Location = new Point(500, 20);
+            startbutton.Text = "Start";
+            startbutton.Font = new Font("Microsoft Sans Serif", 15);
+            startbutton.BackColor = Color.Tomato;
+            Controls.Add(startbutton);
+            //startbutton.MouseMove += new EventHandler(this.startbutton_MouseMove);
+            startbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            startbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            startbutton.BringToFront();
+            //rounded button guna 2 ???
+
+            
+        }
+        private void startbutton_MouseMove(object sender, MouseEventArgs e)
+        {
+            mouseEnter(startbutton);
+        }
+
+        private void startbutton_MouseLeave(object sender, EventArgs e)
+        {
+            mouseLeave(startbutton);
         }
 
         private void tablageneralas()
@@ -217,7 +245,7 @@ namespace Damajatek
             {
                 base.OnPaint(e);
                 RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-                using (GraphicsPath GraphPath = GetRoundPath(Rect, 50))
+                using (GraphicsPath GraphPath = GetRoundPath(Rect,20))
                 {
                     this.Region = new Region(GraphPath);
                     using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
@@ -230,7 +258,8 @@ namespace Damajatek
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            Button newbutton = new Button();
+            //button transparent backgound
+            //átmenetes button háttér
             //loading animation??
             //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
             // esetleg új Form1 vagy usercontrol
