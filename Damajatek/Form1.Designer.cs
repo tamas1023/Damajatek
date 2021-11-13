@@ -43,6 +43,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.LeirasLBL = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -99,6 +100,7 @@
             this.startBTN.TabIndex = 4;
             this.startBTN.Text = "Start";
             this.startBTN.UseVisualStyleBackColor = false;
+            this.startBTN.Visible = false;
             this.startBTN.Click += new System.EventHandler(this.startBTN_Click);
             this.startBTN.Paint += new System.Windows.Forms.PaintEventHandler(this.startBTN_Paint);
             this.startBTN.MouseLeave += new System.EventHandler(this.startBTN_MouseLeave);
@@ -114,6 +116,7 @@
             this.keszitokBTN.TabIndex = 5;
             this.keszitokBTN.Text = "Készítők";
             this.keszitokBTN.UseVisualStyleBackColor = false;
+            this.keszitokBTN.Visible = false;
             this.keszitokBTN.Click += new System.EventHandler(this.keszitokBTN_Click);
             this.keszitokBTN.MouseLeave += new System.EventHandler(this.keszitokBTN_MouseLeave);
             this.keszitokBTN.MouseMove += new System.Windows.Forms.MouseEventHandler(this.keszitokBTN_MouseMove);
@@ -172,6 +175,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Turquoise;
+            this.panel2.Controls.Add(this.LeirasLBL);
             this.panel2.Controls.Add(this.pictureBox4);
             this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Controls.Add(this.pictureBox2);
@@ -225,6 +229,16 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
+            // LeirasLBL
+            // 
+            this.LeirasLBL.AutoSize = true;
+            this.LeirasLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F);
+            this.LeirasLBL.Location = new System.Drawing.Point(3, 0);
+            this.LeirasLBL.MaximumSize = new System.Drawing.Size(400, 10000);
+            this.LeirasLBL.Name = "LeirasLBL";
+            this.LeirasLBL.Size = new System.Drawing.Size(0, 30);
+            this.LeirasLBL.TabIndex = 4;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -235,11 +249,12 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "Form1";
-            this.Text = " ";
+            this.Text = " DámaJáték";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -266,6 +281,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button visszaBTN;
         private System.Windows.Forms.Label infoLBL;
+        private System.Windows.Forms.Label LeirasLBL;
     }
 }
 

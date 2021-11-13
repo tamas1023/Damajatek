@@ -20,10 +20,15 @@ namespace Damajatek
        static int honnanj; 
         static int hovai;
          static int hovaj;
+        static int hanyadik = 0;
        //static Dama [] damak=new Dama[24];
         static RoundedButton startbutton = new RoundedButton();
-       // static Dama egyadat = new Dama("fa", true);
-         //static Dama[,] gametable = new Dama[8, 8];
+        static RoundedButton keszitokbutton = new RoundedButton();
+        static RoundedButton leirasbutton = new RoundedButton();
+        static RoundedButton tovabbbutton = new RoundedButton();
+        static RoundedButton visszabutton = new RoundedButton();
+        // static Dama egyadat = new Dama("fa", true);
+        //static Dama[,] gametable = new Dama[8, 8];
         static PictureBox[,] kepek = new PictureBox[8,8];
         static int[,] dama = new int[8, 8];
         static string nev1;
@@ -40,7 +45,7 @@ namespace Damajatek
         {
             startbutton.Size = new Size(100, 40);
             //startbutton.Location = new Point(615, 20);
-            startbutton.Location = new Point(500, 20);
+            startbutton.Location = new Point(600, 20);
             startbutton.Text = "Start";
             startbutton.Font = new Font("Microsoft Sans Serif", 15);
             startbutton.BackColor = Color.Tomato;
@@ -48,19 +53,184 @@ namespace Damajatek
             //startbutton.MouseMove += new EventHandler(this.startbutton_MouseMove);
             startbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
             startbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            startbutton.Click += new EventHandler(startbutton_Click);
             startbutton.BringToFront();
             //rounded button guna 2 ???
 
+            keszitokbutton.Size = new Size(100, 40);
+            keszitokbutton.Location = new Point(600, 310);
+            keszitokbutton.Text = "Készítők";
+            keszitokbutton.Font = new Font("Microsoft Sans Serif", 15);
+            keszitokbutton.BackColor = Color.Tomato;
+            Controls.Add(keszitokbutton);
+            keszitokbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            keszitokbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            keszitokbutton.BringToFront();
+
+            leirasbutton.Size = new Size(100, 40);
+            leirasbutton.Location = new Point(600, 370);
+            leirasbutton.Text = "Leírás";
+            leirasbutton.Font = new Font("Microsoft Sans Serif", 15);
+            leirasbutton.BackColor = Color.Tomato;
+            Controls.Add(leirasbutton);
+            leirasbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            leirasbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            leirasbutton.Click += new EventHandler(leirasbutton_Click);
+            leirasbutton.BringToFront();
+
+            tovabbbutton.Size = new Size(100, 40);
+            tovabbbutton.Location = new Point(600, 330);
+            tovabbbutton.Text = "Tovább";
+            tovabbbutton.Font = new Font("Microsoft Sans Serif", 15);
+            tovabbbutton.BackColor = Color.Tomato;
+            Controls.Add(tovabbbutton);
+            tovabbbutton.Visible = false;
+            tovabbbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            tovabbbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            tovabbbutton.Click += new EventHandler(tovabbbutton_Click);
+            tovabbbutton.BringToFront();
+
+            visszabutton.Size = new Size(100, 40);
+            visszabutton.Location = new Point(600, 290);
+            visszabutton.Text = "Vissza";
+            visszabutton.Font = new Font("Microsoft Sans Serif", 15);
+            visszabutton.BackColor = Color.Tomato;
+            Controls.Add(visszabutton);
+            visszabutton.Visible = false;
+            visszabutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            visszabutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            visszabutton.Click += new EventHandler(tovabbbutton_Click);
+            visszabutton.BringToFront();
+        }
+
+        private void tovabbbutton_Click(object sender, EventArgs e)
+        {
+            RoundedButton button = sender as RoundedButton;
+            if (hanyadik>=0 && hanyadik<=4)
+            {
+                if (button.Text == "Tovább")
+                {
+                    hanyadik++;
+                }
+            }
+            if (hanyadik<=5 && hanyadik>0)
+            {
+                if (button.Text == "Vissza")
+                {
+                    hanyadik--;
+                }
+            }
+            /*
+            if (button.Text=="Tovább")
+            {
+                hanyadik ++;
+            }
+            else
+            {
+                hanyadik--;
+            }*/
+            
+            kiiras();
             
         }
+
+        private void startbutton_Click(object sender, EventArgs e)
+        {
+            startclickelt();
+        }
+
+        private void leirasbutton_Click(object sender, EventArgs e)
+        {
+            if (leirasbutton.Text == "Leírás")
+            {
+                
+                label1.Visible = false;
+                label2.Visible = false;
+                nev1TBOX.Visible = false;
+                nev2TBOX.Visible = false;
+                tovabbbutton.Visible = true;
+                visszabutton.Visible = true;
+                keszitokbutton.Visible = false;
+                startbutton.Visible = false;
+                infoLBL.Location = new Point(5, 5);
+                infoLBL.Visible = true;
+                //panel1.Visible = false;
+                //panel2.Visible = false;
+                kiiras();
+                leirasbutton.Text = "Főmenü";
+
+            }
+            else
+            {
+                hanyadik = 0;
+                leirasbutton.Text = "Leírás";
+                infoLBL.Location = new Point(14, 202);
+                label1.Visible = true;
+                label2.Visible = true;
+                nev1TBOX.Visible = true;
+                nev2TBOX.Visible = true;
+                tovabbbutton.Visible = false;
+                visszabutton.Visible = false;
+                keszitokbutton.Visible = true;
+                startbutton.Visible = true;
+                infoLBL.Location = new Point(5, 5);
+                infoLBL.Visible = false;
+                // panel1.Visible = true;
+                //panel2.Visible = true;
+                LeirasLBL.Text = "";
+
+            }
+            //button transparent backgound
+            //átmenetes button háttér
+            //loading animation??
+            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
+            // esetleg új Form1 vagy usercontrol
+            
+        }
+
+        private void kiiras()
+        {
+            if (hanyadik == 0)
+            {
+                LeirasLBL.Text = "A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.A játékosok felváltva lépnek egy - egy gyaloggal az alábbiak szerint:Csak átlósan lehet lépni, ugyanolyan színű mezőre, amilyenen a bábu eredetileg is állt.";
+                
+            }
+            if (hanyadik == 1)
+            {
+                LeirasLBL.Text = "Nem szabad olyan mezőre lépni, amelyen már van egy másik bábu.A gyalog csak az ellenfél felé(előre léphet), visszafelé nem.A gyalog egyszerre csak egyet léphet.";
+                
+            }
+            if (hanyadik == 2)
+            {
+
+                LeirasLBL.Text = " Saját bábut nem lehet sem leütni, sem átugorni.Amikor az ellenfelek bábui „találkoznak”, kétféle helyzet állhat elő:Ha az ellenfél bábuja mögött(ugyanabban az irányban továbbhaladva) van egy üres mező,akkor a játékos a saját bábujával átugorja azt, majd leveszi a tábláról. Ezt nevezik ütésnek.";
+            }
+            if (hanyadik==3)
+            {
+                LeirasLBL.Text = "A dámát általában ütéskényszerrel játsszák.A fenti szabályokból következik, hogy abban az esetben viszont,ha az ellenfél bábuja mögött nincs üres mező(mert egy másik bábu áll ott vagy vége van a táblának),akkor nem lehet leütni. Amíg a helyzet nem változik,a játékos ebben az irányban nem tud továbbhaladni.";
+
+            }
+            if (hanyadik==4)
+            {
+                LeirasLBL.Text = "Az a gyalog, amely az ellenfél sorfalán áttörve eléri a tábla szemközti oldalát,dámává változik. A dámát láthatóan megkülönböztetik a gyalogoktól – például a korongra rátesznek még egyet a levettek közül,vagy ha sakkfigurákkal játszanak, a gyalogot valamilyen tisztre cserélik.";
+
+            }
+            if (hanyadik==5)
+            {
+                LeirasLBL.Text = "A dáma ezután visszafelé is léphet és üthet, de minden más szabályt be kell tartania (saját bábut nem léphet át,olyan mezőre nem léphet, ahol már van egy bábu, stb.). A dámát ugyanúgy le lehet ütni, mint a gyalogot.A játék addig folytatódik, amíg az egyik játékos nem tud lépni – vagy azért,mert minden bábuját levette az ellenfél, vagy azért, mert a maradék bábui közül eggyel sem tud lépni.";
+            }
+    }
+
         private void startbutton_MouseMove(object sender, MouseEventArgs e)
         {
-            mouseEnter(startbutton);
+            RoundedButton button = sender as RoundedButton;
+            mouseEnter(button);
         }
 
         private void startbutton_MouseLeave(object sender, EventArgs e)
         {
-            mouseLeave(startbutton);
+            RoundedButton button = sender as RoundedButton;
+            mouseLeave(button);
         }
 
         private void tablageneralas()
@@ -328,7 +498,7 @@ namespace Damajatek
             {
                 base.OnPaint(e);
                 RectangleF Rect = new RectangleF(0, 0, this.Width, this.Height);
-                using (GraphicsPath GraphPath = GetRoundPath(Rect,20))
+                using (GraphicsPath GraphPath = GetRoundPath(Rect,25))
                 {
                     this.Region = new Region(GraphPath);
                     using (Pen pen = new Pen(Color.CadetBlue, 1.75f))
@@ -341,20 +511,20 @@ namespace Damajatek
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //button transparent backgound
-            //átmenetes button háttér
-            //loading animation??
-            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
-            // esetleg új Form1 vagy usercontrol
+            
 
         }
 
         private void startBTN_Click(object sender, EventArgs e)
         {
-            
+            startclickelt();
+        }
+
+        private void startclickelt()
+        {
             nev1 = nev1TBOX.Text;
             nev2 = nev2TBOX.Text;
-            if (nev1=="" || nev2=="")
+            if (nev1 == "" || nev2 == "")
             {
                 infoLBL.Text = "Valakinek nincsen neve!";
 
@@ -373,11 +543,10 @@ namespace Damajatek
                     visszaBTN.Visible = true;
                     gametablefeltoltes();
                     tablageneralas();
-                    
+
                 }
             }
-           
-            
+
         }
 
         private void gametablefeltoltes()
@@ -398,49 +567,7 @@ namespace Damajatek
 
         private void leirasBTN_Click(object sender, EventArgs e)
         {
-            if (leirasBTN.Text=="Leírás")
-            {
-                label1.Visible = false;
-                label2.Visible = false;
-                nev1TBOX.Visible = false;
-                nev2TBOX.Visible = false;
-                visszaBTN.Visible = false;
-                keszitokBTN.Visible = false;
-                startBTN.Visible = false;
-                infoLBL.Location = new Point(5, 5);
-                infoLBL.Visible = true;
-                infoLBL.Text = "A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.";
-                
-            }
-            else
-            {
-                infoLBL.Location=new Point(14, 202);
-                
-            }
-            /*A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.
-            A játékosok felváltva lépnek egy - egy gyaloggal az alábbiak szerint:
-            Csak átlósan lehet lépni, ugyanolyan színű mezőre, amilyenen a bábu eredetileg is állt.
-            Nem szabad olyan mezőre lépni, amelyen már van egy másik bábu.
-            A gyalog csak az ellenfél felé(előre léphet), visszafelé nem.
-            A gyalog egyszerre csak egyet léphet.
-            Saját bábut nem lehet sem leütni, sem átugorni.
-            Amikor az ellenfelek bábui „találkoznak”, kétféle helyzet állhat elő:
-            Ha az ellenfél bábuja mögött (ugyanabban az irányban továbbhaladva) van egy üres mező,
-            akkor a játékos a saját bábujával átugorja azt, majd leveszi a tábláról. Ezt nevezik ütésnek.
-            A dámát általában ütéskényszerrel játsszák.
-             A fenti szabályokból következik, hogy abban az esetben viszont,
-            ha az ellenfél bábuja mögött nincs üres mező (mert egy másik bábu áll ott vagy vége van a táblának),
-            akkor nem lehet leütni. Amíg a helyzet nem változik,
-            a játékos ebben az irányban nem tud továbbhaladni.
-            Az a gyalog, amely az ellenfél sorfalán áttörve eléri a tábla szemközti oldalát,dámává változik. 
-            A dámát láthatóan megkülönböztetik a gyalogoktól – például a korongra rátesznek még egyet a levettek közül,
-            vagy ha sakkfigurákkal játszanak, a gyalogot valamilyen tisztre cserélik.
-            A dáma ezután visszafelé is léphet és üthet, de minden más szabályt be kell tartania (saját bábut nem léphet át,
-            olyan mezőre nem léphet, ahol már van egy bábu, stb.). A dámát ugyanúgy le lehet ütni, mint a gyalogot.
-            A játék addig folytatódik, amíg az egyik játékos nem tud lépni – vagy azért,
-            mert minden bábuját levette az ellenfél, vagy azért, mert a maradék bábui közül eggyel sem tud lépni.
-
-             */
+            
         }
 
 
