@@ -78,3 +78,13 @@ D:\GIT\backup\Damajatek\obj\Debug\Damajatek.csproj.GenerateResource.cache
 D:\GIT\backup\Damajatek\obj\Debug\Damajatek.csproj.CoreCompileInputs.cache
 D:\GIT\backup\Damajatek\obj\Debug\Damajatek.exe
 D:\GIT\backup\Damajatek\obj\Debug\Damajatek.pdb
+D:\András\asztali_14\drama2\Damajatek\bin\Debug\Damajatek.exe.config
+D:\András\asztali_14\drama2\Damajatek\bin\Debug\Damajatek.exe
+D:\András\asztali_14\drama2\Damajatek\bin\Debug\Damajatek.pdb
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.csprojAssemblyReference.cache
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.Form1.resources
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.Properties.Resources.resources
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.csproj.GenerateResource.cache
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.csproj.CoreCompileInputs.cache
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.exe
+D:\András\asztali_14\drama2\Damajatek\obj\Debug\Damajatek.pdb

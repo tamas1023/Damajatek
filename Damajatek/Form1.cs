@@ -13,17 +13,17 @@ namespace Damajatek
 {
     public partial class Form1 : Form
     {
-       // static int kijon; ha le kellene programozni hogy egymás után jönnek a játékosok (forceolva lenne hogy fekete után fehér jöjjön)
+       static bool feketee=true; 
         static int menyikkep;
         static bool kapcs = true;
         static int honnani;
        static int honnanj; 
         static int hovai;
          static int hovaj;
-        static Dama [] damak=new Dama[24];
+       //static Dama [] damak=new Dama[24];
         static RoundedButton startbutton = new RoundedButton();
-
-        // static Dama[,] gametable = new Dama[8, 8];
+       // static Dama egyadat = new Dama("fa", true);
+         //static Dama[,] gametable = new Dama[8, 8];
         static PictureBox[,] kepek = new PictureBox[8,8];
         static int[,] dama = new int[8, 8];
         static string nev1;
@@ -32,7 +32,7 @@ namespace Damajatek
         {
             InitializeComponent();
             //damak feltöltése fele fehér fele fekete
-            damafeltoltes();
+           // damafeltoltes();
             buttongeneralas();
         }
 
@@ -79,7 +79,10 @@ namespace Damajatek
                     kep.Name =j+"";
                     kep.Visible = true;
                     kep.Size = new System.Drawing.Size(50, 50);
-                    if(j<=2&&j>=0)
+                   // gametable[i, j] = egyadat;
+                   // gametable[i, j].Szin = "f";
+                   // gametable[i, j].Damae = false;
+                    if (j<=2&&j>=0)
                     {
                         db++;
                         if(db==8)
@@ -89,6 +92,9 @@ namespace Damajatek
                         if(db%2==1)
                         {
                             kep.Image = Image.FromFile("feher.png");
+                           // gametable[i, j] = egyadat;
+                           // gametable[i, j].Szin = "feher";
+                           // gametable[i, j].Damae = false;
                             dama[i, j] = 1;
                         }
                        
@@ -103,6 +109,9 @@ namespace Damajatek
                         if (db2 % 2 == 0)
                         {
                             kep.Image = Image.FromFile("fekete.png");
+                           // gametable[i, j] = egyadat;
+                          //  gametable[i, j].Szin = "fekete";
+                           // gametable[i, j].Damae = false;
                             dama[i, j] = 2;
                         }
                     }
@@ -130,10 +139,10 @@ namespace Damajatek
                         }
                     }
                     kep.Tag = i;
-                    
                     kep.SizeMode = PictureBoxSizeMode.StretchImage;
                     Controls.Add(kep);
                     kepek[i, j] = kep;
+                  
                     //kep.BringToFront();
 
                     kep.Click += new System.EventHandler(this.palyaklikk);
@@ -147,22 +156,93 @@ namespace Damajatek
         {
             PictureBox kapcsolt = sender as PictureBox;
            
-            if (kapcs&&kapcsolt.Image!=null)
+            if(feketee)
             {
+                feketelep(kapcsolt);
+            }
+            else
+            {
+                feherlep(kapcsolt);
+            }
+            
+
+
+        }
+
+        private void feherlep(PictureBox kapcsolt)
+        {
+            if (kapcs && dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 1)
+            {
+
+                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                 honnani = Convert.ToInt32(kapcsolt.Tag);
                 honnanj = Convert.ToInt32(kapcsolt.Name);
-               
-               
-                switch(dama[honnani,honnanj])
+
+
+                switch (dama[honnani, honnanj])
                 {
                     case 1:
                         menyikkep = 1;
                         break;
-                    case 2:
-                        menyikkep = 2;
-                        break;
                     case -1:
                         menyikkep = -1;
+                        break;
+                }
+                kapcs = false;
+            }
+            else if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj + 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
+            {
+
+                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                hovai = Convert.ToInt32(kapcsolt.Tag);
+                hovaj = Convert.ToInt32(kapcsolt.Name);
+                if (Convert.ToInt32(kapcsolt.Tag) == 0)
+                {
+                    dama[honnani, honnanj] = 0;
+                    dama[hovai, hovaj] = -1;
+                    kapcsolt.Image = Image.FromFile("feherd.png");
+                    kepek[honnani, honnanj].Image = null;
+                }
+                else
+                {
+                    switch (menyikkep)
+                    {
+                        case 1:
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = 1;
+                            kapcsolt.Image = Image.FromFile("feher.png");
+                            kepek[honnani, honnanj].Image = null;
+                            break;
+                        case -1:
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = -1;
+                            kapcsolt.Image = Image.FromFile("feherd.png");
+                            kepek[honnani, honnanj].Image = null;
+                            break;
+                    }
+                }
+
+                kapcs = true;
+                feketee = true;
+            }
+
+        }
+
+        private void feketelep(PictureBox kapcsolt)
+        {
+        
+            if (kapcs&& dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 2)
+            {
+
+                MessageBox.Show("asd: "+ Convert.ToInt32(kapcsolt.Tag)+","+Convert.ToInt32(kapcsolt.Name));
+                honnani = Convert.ToInt32(kapcsolt.Tag);
+                honnanj = Convert.ToInt32(kapcsolt.Name);
+
+
+                switch (dama[honnani, honnanj])
+                {
+                    case 2:
+                        menyikkep = 2;
                         break;
                     case -2:
                         menyikkep = -2;
@@ -170,41 +250,44 @@ namespace Damajatek
                 }
                 kapcs = false;
             }
-            else if(!kapcs&&kapcsolt.Image==null&&(Convert.ToInt32(kapcsolt.Tag)<=honnani+1&&Convert.ToInt32(kapcsolt.Tag)>=honnani-1))
+            else if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj-1 && ((Convert.ToInt32( kapcsolt.Tag)==honnani+1||Convert.ToInt32( kapcsolt.Tag)==honnani-1)))
             {
+                
+                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                 hovai = Convert.ToInt32(kapcsolt.Tag);
                 hovaj = Convert.ToInt32(kapcsolt.Name);
-                switch(menyikkep)
+                if (Convert.ToInt32(kapcsolt.Name) == 0)
                 {
-                    case 1:
-                        dama[honnani, honnanj] = 0;
-                        dama[hovai, hovaj] = 1;
-                        kapcsolt.Image = Image.FromFile("feher.png");
-                        kepek[honnani, honnanj].Image = null;
-                        break;
-                    case 2:
-                        dama[hovai, hovaj] = 2;
-                        kapcsolt.Image = Image.FromFile("fekete.png");
-                        kepek[honnani, honnanj].Image = null;
-                        break;
-                    case -1:
-                        dama[hovai, hovaj] = -1;
-                        kapcsolt.Image = Image.FromFile("feherd.png");
-                        kepek[honnani, honnanj].Image = null;
-                        break;
-                    case -2:
-                        dama[hovai, hovaj] = -2;
-                        kapcsolt.Image = Image.FromFile("feketed.png");
-                        kepek[honnani, honnanj].Image = null;
-                        break;
+                    dama[honnani, honnanj] = 0;
+                    dama[hovai, hovaj] = -2;
+                    kapcsolt.Image = Image.FromFile("feketed.png");
+                    kepek[honnani, honnanj].Image = null;
                 }
+               else
+                {
+                    switch (menyikkep)
+                    {
+                        case 2:
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = 2;
+                            kapcsolt.Image = Image.FromFile("fekete.png");
+                            kepek[honnani, honnanj].Image = null;
+                            break;
+                        case -2:
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = -2;
+                            kapcsolt.Image = Image.FromFile("feketed.png");
+                            kepek[honnani, honnanj].Image = null;
+                            break;
+                    }
+                }
+               
                 kapcs = true;
+                feketee = false;
             }
-
-
         }
 
-        private void damafeltoltes()
+       /* private void damafeltoltes()
         {
             for (int i = 0; i < damak.Length; i++)
             {
@@ -220,7 +303,7 @@ namespace Damajatek
                     damak[i].Damae = false;
                 }
             }
-        }
+        }*/
 
         class RoundedButton : Button
         {
@@ -288,8 +371,9 @@ namespace Damajatek
                     keszitokBTN.Visible = false;
                     leirasBTN.Visible = false;
                     visszaBTN.Visible = true;
-                    tablageneralas();
                     gametablefeltoltes();
+                    tablageneralas();
+                    
                 }
             }
            
@@ -302,7 +386,7 @@ namespace Damajatek
             {
                 for (int j = 0; j < 7; j++)
                 {
-
+                  //  gametable[i, j] = new Dama("nemteljes",false);
                 }
             }
         }
