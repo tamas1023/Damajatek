@@ -180,6 +180,7 @@ namespace Damajatek
                 LeirasLBL.Text = "";
 
             }
+            //a név beírásos helynek adni backgoundot, frissíteni a designot
             //button transparent backgound
             //átmenetes button háttér
             //loading animation??
