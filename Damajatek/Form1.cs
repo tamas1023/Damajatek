@@ -13,6 +13,7 @@ namespace Damajatek
 {
     public partial class Form1 : Form
     {
+        static bool utesvane = false;
        static bool feketee=true; 
         static int menyikkep;
         static bool kapcs = true;
@@ -37,8 +38,19 @@ namespace Damajatek
         {
             InitializeComponent();
             //damak feltöltése fele fehér fele fekete
-           // damafeltoltes();
+           damafeltoltes();
             buttongeneralas();
+        }
+
+        private void damafeltoltes()
+        {
+            for (int i = 0; i < 7; i++)
+            {
+                for (int j = 0; j < 7; j++)
+                {
+                    dama[i, j] = 0;
+                }
+            }
         }
 
         private void buttongeneralas()
@@ -326,7 +338,6 @@ namespace Damajatek
         private void palyaklikk(object sender, EventArgs e)
         {
             PictureBox kapcsolt = sender as PictureBox;
-           
             if(feketee)
             {
                 feketelep(kapcsolt);
@@ -335,127 +346,325 @@ namespace Damajatek
             {
                 feherlep(kapcsolt);
             }
-            
-
-
         }
+
+       
 
         private void feherlep(PictureBox kapcsolt)
         {
-            if (kapcs && dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 1)
+            if (kapcs && dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 1|| dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == -1)
             {
 
                 MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                 honnani = Convert.ToInt32(kapcsolt.Tag);
                 honnanj = Convert.ToInt32(kapcsolt.Name);
-
-
-                switch (dama[honnani, honnanj])
-                {
-                    case 1:
-                        menyikkep = 1;
-                        break;
-                    case -1:
-                        menyikkep = -1;
-                        break;
-                }
-                kapcs = false;
+                menyik();
             }
-            else if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj + 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
+            else if (kapcs && kapcsolt.Image == null)
             {
+                kapcs = false;
+                vaneutessima(kapcsolt);
+            }
+            if(dama[honnani,honnanj] == -1)
+            {
+                if (!kapcs && kapcsolt.Image == null && ((Convert.ToInt32(kapcsolt.Tag) % 2 == 0 && Convert.ToInt32(kapcsolt.Name) % 2 == 0) || (Convert.ToInt32(kapcsolt.Tag) % 2 == 1 && Convert.ToInt32(kapcsolt.Name) % 2 == 1)) && ((Convert.ToInt32(kapcsolt.Tag) - honnani == (Convert.ToInt32(kapcsolt.Name) - honnanj))))
+                {
 
-                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
-                hovai = Convert.ToInt32(kapcsolt.Tag);
-                hovaj = Convert.ToInt32(kapcsolt.Name);
-                if (Convert.ToInt32(kapcsolt.Tag) == 0)
-                {
-                    dama[honnani, honnanj] = 0;
-                    dama[hovai, hovaj] = -1;
-                    kapcsolt.Image = Image.FromFile("feherd.png");
-                    kepek[honnani, honnanj].Image = null;
-                }
-                else
-                {
-                    switch (menyikkep)
+                    MessageBox.Show("damafeher: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    if (Convert.ToInt32(kapcsolt.Tag) == 0)
                     {
-                        case 1:
-                            dama[honnani, honnanj] = 0;
-                            dama[hovai, hovaj] = 1;
-                            kapcsolt.Image = Image.FromFile("feher.png");
-                            kepek[honnani, honnanj].Image = null;
-                            break;
-                        case -1:
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = -1;
+                        kapcsolt.Image = Image.FromFile("feherd.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        lepes(kapcsolt);
+                    }
+
+                    kapcs = true;
+                    feketee = true;
+                }
+
+            }
+            else
+            {
+             if(!utesvane)
+                {
+                    if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj + 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
+                    {
+
+                        MessageBox.Show("nincs ütés: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                        hovai = Convert.ToInt32(kapcsolt.Tag);
+                        hovaj = Convert.ToInt32(kapcsolt.Name);
+                        if (Convert.ToInt32(kapcsolt.Tag) == 0)
+                        {
                             dama[honnani, honnanj] = 0;
                             dama[hovai, hovaj] = -1;
                             kapcsolt.Image = Image.FromFile("feherd.png");
                             kepek[honnani, honnanj].Image = null;
-                            break;
+                        }
+                        else
+                        {
+                            lepes(kapcsolt);
+                        }
+
+                        kapcs = true;
+                        feketee = true;
                     }
                 }
-
-                kapcs = true;
-                feketee = true;
+               
             }
 
         }
 
-        private void feketelep(PictureBox kapcsolt)
+        private void lepes(PictureBox kapcsolt)
         {
-        
-            if (kapcs&& dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 2)
+           
+            switch (menyikkep)
             {
-
-                MessageBox.Show("asd: "+ Convert.ToInt32(kapcsolt.Tag)+","+Convert.ToInt32(kapcsolt.Name));
-                honnani = Convert.ToInt32(kapcsolt.Tag);
-                honnanj = Convert.ToInt32(kapcsolt.Name);
-
-
-                switch (dama[honnani, honnanj])
-                {
-                    case 2:
-                        menyikkep = 2;
-                        break;
-                    case -2:
-                        menyikkep = -2;
-                        break;
-                }
-                kapcs = false;
-            }
-            else if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj-1 && ((Convert.ToInt32( kapcsolt.Tag)==honnani+1||Convert.ToInt32( kapcsolt.Tag)==honnani-1)))
-            {
-                
-                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
-                hovai = Convert.ToInt32(kapcsolt.Tag);
-                hovaj = Convert.ToInt32(kapcsolt.Name);
-                if (Convert.ToInt32(kapcsolt.Name) == 0)
-                {
+                case 1:
+                    dama[honnani, honnanj] = 0;
+                    dama[hovai, hovaj] = 1;
+                    kapcsolt.Image = Image.FromFile("feher.png");
+                    kepek[honnani, honnanj].Image = null;
+                    break;
+                case -1:
+                    dama[honnani, honnanj] = 0;
+                    dama[hovai, hovaj] = -1;
+                    kapcsolt.Image = Image.FromFile("feherd.png");
+                    kepek[honnani, honnanj].Image = null;
+                    break;
+                case 2:
+                    dama[honnani, honnanj] = 0;
+                    dama[hovai, hovaj] = 2;
+                    kapcsolt.Image = Image.FromFile("fekete.png");
+                    kepek[honnani, honnanj].Image = null;
+                    break;
+                case -2:
                     dama[honnani, honnanj] = 0;
                     dama[hovai, hovaj] = -2;
                     kapcsolt.Image = Image.FromFile("feketed.png");
                     kepek[honnani, honnanj].Image = null;
-                }
-               else
+                    break;
+            }
+        }
+
+        private void vaneutessima(PictureBox kapcsolt)
+        {
+            if(dama[honnani,honnanj]==1)
+            {
+                if((dama[honnani-1,honnanj+1]==2|| dama[honnani - 1, honnanj + 1] == -2)&&honnani-1>=0&&honnanj+1<=7&& (dama[honnani - 2, honnanj + 2] == 0 || dama[honnani - 2, honnanj + 2] == 0))
                 {
-                    switch (menyikkep)
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+
+                    if (Convert.ToInt32(kapcsolt.Tag) == 0)
                     {
-                        case 2:
-                            dama[honnani, honnanj] = 0;
-                            dama[hovai, hovaj] = 2;
-                            kapcsolt.Image = Image.FromFile("fekete.png");
-                            kepek[honnani, honnanj].Image = null;
-                            break;
-                        case -2:
+                        dama[honnani, honnanj] = 0;
+                        dama[honnani - 1, honnanj + 1] = 0;
+                        kepek[honnani - 1, honnanj + 1].Image = null;
+                        dama[hovai, hovaj] = -1;
+                        kapcsolt.Image = Image.FromFile("feherd.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        dama[honnani - 1, honnanj + 1] = 0;
+                        kepek[honnani - 1, honnanj + 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = 1;
+                        kapcsolt.Image = Image.FromFile("feher.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+
+                    kapcs = true;
+                    feketee = true;
+                }
+                if((dama[honnani + 1, honnanj + 1] == 2|| dama[honnani + 1, honnanj + 1] == -2) && honnanj + 1 <= 7&&honnani+1<=7&&(dama[honnani + 2, honnanj + 2] == 0 || dama[honnani + 2, honnanj + 2] == 0))
+                {
+                    MessageBox.Show("vanütés-jobra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    if (Convert.ToInt32(kapcsolt.Tag) == 0)
+                    {
+                        dama[honnani, honnanj] = 0;
+                        dama[honnani + 1, honnanj + 1] = 0;
+                        kepek[honnani + 1, honnanj + 1].Image = null;
+                        dama[hovai, hovaj] = -1;
+                        kapcsolt.Image = Image.FromFile("feherd.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        dama[honnani + 1, honnanj + 1] = 0;
+                        kepek[honnani + 1, honnanj + 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = 1;
+                        kapcsolt.Image = Image.FromFile("feher.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+
+                    kapcs = true;
+                    feketee = true;
+                }
+            }
+            if (dama[honnani, honnanj] == 2)
+            {
+                if ((dama[honnani - 1, honnanj - 1] == 1 || dama[honnani - 1, honnanj - 1] == -1)&&honnani-1>=0&&honnanj+1<=7 && (dama[honnani - 2, honnanj - 2] == 0 || dama[honnani - 2, honnanj - 2] == 0))
+                {
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                    if (Convert.ToInt32(kapcsolt.Name) == 0)
+                    {
+                        dama[honnani - 1, honnanj - 1] = 0;
+                        kepek[honnani - 1, honnanj - 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = -2;
+                        kapcsolt.Image = Image.FromFile("feketed.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        dama[honnani - 1, honnanj - 1] = 0;
+                        kepek[honnani - 1, honnanj - 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = 2;
+                        kapcsolt.Image = Image.FromFile("fekete.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+
+                    kapcs = true;
+                    feketee = false;
+                }
+                if ((dama[honnani + 1, honnanj - 1] == 1 || dama[honnani + 1, honnanj - 1] == -1) && honnanj + 1 <= 7 && honnani + 1 <= 7 && (dama[honnani + 2, honnanj - 2] == 0 || dama[honnani + 2, honnanj - 2] == 0))
+                {
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    MessageBox.Show("vanütés-jobbra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                    if (Convert.ToInt32(kapcsolt.Name) == 0)
+                    {
+                        dama[honnani + 1, honnanj - 1] = 0;
+                        kepek[honnani + 1, honnanj - 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = -2;
+                        kapcsolt.Image = Image.FromFile("feketed.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        dama[honnani + 1, honnanj - 1] = 0;
+                        kepek[honnani + 1, honnanj - 1].Image = null;
+
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = 2;
+                        kapcsolt.Image = Image.FromFile("fekete.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+
+                    kapcs = true;
+                    feketee = false;
+                }
+            }
+        }
+
+        private void menyik()
+        {
+            switch (dama[honnani, honnanj])
+            {
+                case 1:
+                    menyikkep = 1;
+                    break;
+                case -1:
+                    menyikkep = -1;
+                    break;
+                case 2:
+                    menyikkep = 2;
+                    break;
+                case -2:
+                    menyikkep = -2;
+                    break;
+            }
+        }
+
+        private void feketelep(PictureBox kapcsolt)
+        {
+            if (kapcs&& dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 2|| dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == -2)
+            {
+
+                //MessageBox.Show("asd: "+ Convert.ToInt32(kapcsolt.Tag)+","+Convert.ToInt32(kapcsolt.Name));
+                honnani = Convert.ToInt32(kapcsolt.Tag);
+                honnanj = Convert.ToInt32(kapcsolt.Name);
+                menyik(); 
+            }
+            else if(kapcs && kapcsolt.Image == null)
+            {
+                kapcs = false;
+                vaneutessima(kapcsolt);
+            }
+            if(dama[honnani,honnanj]==-2)
+            {
+                if (!kapcs && kapcsolt.Image == null && ((Convert.ToInt32(kapcsolt.Tag) % 2 == 0 && Convert.ToInt32(kapcsolt.Name) % 2 == 0) || (Convert.ToInt32(kapcsolt.Tag) % 2 == 1 && Convert.ToInt32(kapcsolt.Name) % 2 == 1)) && (((Convert.ToInt32(kapcsolt.Tag) - honnani == (Convert.ToInt32(kapcsolt.Name) - honnanj))) || (( honnani- Convert.ToInt32(kapcsolt.Tag) == (honnanj-Convert.ToInt32(kapcsolt.Name))))))
+                {
+
+                   MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                    hovai = Convert.ToInt32(kapcsolt.Tag);
+                    hovaj = Convert.ToInt32(kapcsolt.Name);
+                    if (Convert.ToInt32(kapcsolt.Name) == 0)
+                    {
+                        dama[honnani, honnanj] = 0;
+                        dama[hovai, hovaj] = -2;
+                        kapcsolt.Image = Image.FromFile("feketed.png");
+                        kepek[honnani, honnanj].Image = null;
+                    }
+                    else
+                    {
+                        lepes(kapcsolt);
+                    }
+
+                    kapcs = true;
+                    feketee = false;
+                }
+            }
+            else
+            {
+                if(!utesvane)
+                { 
+                    if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj - 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
+                    {
+
+                        //MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                        hovai = Convert.ToInt32(kapcsolt.Tag);
+                        hovaj = Convert.ToInt32(kapcsolt.Name);
+                        if (Convert.ToInt32(kapcsolt.Name) == 0)
+                        {
                             dama[honnani, honnanj] = 0;
                             dama[hovai, hovaj] = -2;
                             kapcsolt.Image = Image.FromFile("feketed.png");
                             kepek[honnani, honnanj].Image = null;
-                            break;
+                        }
+                        else
+                        {
+                            lepes(kapcsolt);
+                        }
+
+                        kapcs = true;
+                        feketee = false;
                     }
                 }
-               
-                kapcs = true;
-                feketee = false;
             }
+            
         }
 
        /* private void damafeltoltes()
