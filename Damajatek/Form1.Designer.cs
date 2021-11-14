@@ -32,24 +32,22 @@
             this.nev1TBOX = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.startBTN = new System.Windows.Forms.Button();
-            this.keszitokBTN = new System.Windows.Forms.Button();
-            this.leirasBTN = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.infoLBL = new System.Windows.Forms.Label();
-            this.visszaBTN = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.LeirasLBL = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.LeirasLBL = new System.Windows.Forms.Label();
+            this.kep1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kep1)).BeginInit();
             this.SuspendLayout();
             // 
             // nev2TBOX
@@ -90,62 +88,14 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Második név:";
             // 
-            // startBTN
-            // 
-            this.startBTN.BackColor = System.Drawing.Color.Tomato;
-            this.startBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.startBTN.Location = new System.Drawing.Point(71, 8);
-            this.startBTN.Name = "startBTN";
-            this.startBTN.Size = new System.Drawing.Size(100, 40);
-            this.startBTN.TabIndex = 4;
-            this.startBTN.Text = "Start";
-            this.startBTN.UseVisualStyleBackColor = false;
-            this.startBTN.Visible = false;
-            this.startBTN.Click += new System.EventHandler(this.startBTN_Click);
-            this.startBTN.Paint += new System.Windows.Forms.PaintEventHandler(this.startBTN_Paint);
-            this.startBTN.MouseLeave += new System.EventHandler(this.startBTN_MouseLeave);
-            this.startBTN.MouseMove += new System.Windows.Forms.MouseEventHandler(this.startBTN_MouseMove);
-            // 
-            // keszitokBTN
-            // 
-            this.keszitokBTN.BackColor = System.Drawing.Color.Tomato;
-            this.keszitokBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.keszitokBTN.Location = new System.Drawing.Point(71, 301);
-            this.keszitokBTN.Name = "keszitokBTN";
-            this.keszitokBTN.Size = new System.Drawing.Size(100, 40);
-            this.keszitokBTN.TabIndex = 5;
-            this.keszitokBTN.Text = "Készítők";
-            this.keszitokBTN.UseVisualStyleBackColor = false;
-            this.keszitokBTN.Visible = false;
-            this.keszitokBTN.Click += new System.EventHandler(this.keszitokBTN_Click);
-            this.keszitokBTN.MouseLeave += new System.EventHandler(this.keszitokBTN_MouseLeave);
-            this.keszitokBTN.MouseMove += new System.Windows.Forms.MouseEventHandler(this.keszitokBTN_MouseMove);
-            // 
-            // leirasBTN
-            // 
-            this.leirasBTN.BackColor = System.Drawing.Color.Tomato;
-            this.leirasBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.leirasBTN.Location = new System.Drawing.Point(71, 360);
-            this.leirasBTN.Name = "leirasBTN";
-            this.leirasBTN.Size = new System.Drawing.Size(100, 40);
-            this.leirasBTN.TabIndex = 5;
-            this.leirasBTN.Text = "Leírás";
-            this.leirasBTN.UseVisualStyleBackColor = false;
-            this.leirasBTN.Click += new System.EventHandler(this.leirasBTN_Click);
-            this.leirasBTN.MouseLeave += new System.EventHandler(this.leirasBTN_MouseLeave);
-            this.leirasBTN.MouseMove += new System.Windows.Forms.MouseEventHandler(this.leirasBTN_MouseMove);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Turquoise;
             this.panel1.Controls.Add(this.infoLBL);
-            this.panel1.Controls.Add(this.visszaBTN);
-            this.panel1.Controls.Add(this.startBTN);
             this.panel1.Controls.Add(this.nev1TBOX);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.keszitokBTN);
             this.panel1.Controls.Add(this.nev2TBOX);
-            this.panel1.Controls.Add(this.leirasBTN);
+            this.panel1.Controls.Add(this.kep1);
             this.panel1.Location = new System.Drawing.Point(528, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(245, 426);
@@ -160,18 +110,6 @@
             this.infoLBL.Size = new System.Drawing.Size(0, 20);
             this.infoLBL.TabIndex = 7;
             // 
-            // visszaBTN
-            // 
-            this.visszaBTN.BackColor = System.Drawing.Color.Tomato;
-            this.visszaBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.visszaBTN.Location = new System.Drawing.Point(72, 247);
-            this.visszaBTN.Name = "visszaBTN";
-            this.visszaBTN.Size = new System.Drawing.Size(100, 40);
-            this.visszaBTN.TabIndex = 6;
-            this.visszaBTN.Text = "Vissza";
-            this.visszaBTN.UseVisualStyleBackColor = false;
-            this.visszaBTN.Visible = false;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Turquoise;
@@ -184,6 +122,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(400, 400);
             this.panel2.TabIndex = 7;
+            // 
+            // LeirasLBL
+            // 
+            this.LeirasLBL.AutoSize = true;
+            this.LeirasLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F);
+            this.LeirasLBL.Location = new System.Drawing.Point(3, 0);
+            this.LeirasLBL.MaximumSize = new System.Drawing.Size(400, 10000);
+            this.LeirasLBL.Name = "LeirasLBL";
+            this.LeirasLBL.Size = new System.Drawing.Size(0, 30);
+            this.LeirasLBL.TabIndex = 4;
             // 
             // pictureBox4
             // 
@@ -229,15 +177,14 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
-            // LeirasLBL
+            // kep1
             // 
-            this.LeirasLBL.AutoSize = true;
-            this.LeirasLBL.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F);
-            this.LeirasLBL.Location = new System.Drawing.Point(3, 0);
-            this.LeirasLBL.MaximumSize = new System.Drawing.Size(400, 10000);
-            this.LeirasLBL.Name = "LeirasLBL";
-            this.LeirasLBL.Size = new System.Drawing.Size(0, 30);
-            this.LeirasLBL.TabIndex = 4;
+            this.kep1.Location = new System.Drawing.Point(-19, 19);
+            this.kep1.Name = "kep1";
+            this.kep1.Size = new System.Drawing.Size(286, 180);
+            this.kep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.kep1.TabIndex = 8;
+            this.kep1.TabStop = false;
             // 
             // Form1
             // 
@@ -259,6 +206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kep1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,18 +218,15 @@
         private System.Windows.Forms.TextBox nev1TBOX;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button startBTN;
-        private System.Windows.Forms.Button keszitokBTN;
-        private System.Windows.Forms.Button leirasBTN;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button visszaBTN;
         private System.Windows.Forms.Label infoLBL;
         private System.Windows.Forms.Label LeirasLBL;
+        private System.Windows.Forms.PictureBox kep1;
     }
 }
 

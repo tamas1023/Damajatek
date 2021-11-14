@@ -22,14 +22,13 @@ namespace Damajatek
         static int hovai;
          static int hovaj;
         static int hanyadik = 0;
-       //static Dama [] damak=new Dama[24];
+       
         static RoundedButton startbutton = new RoundedButton();
         static RoundedButton keszitokbutton = new RoundedButton();
         static RoundedButton leirasbutton = new RoundedButton();
         static RoundedButton tovabbbutton = new RoundedButton();
         static RoundedButton visszabutton = new RoundedButton();
-        // static Dama egyadat = new Dama("fa", true);
-        //static Dama[,] gametable = new Dama[8, 8];
+        
         static PictureBox[,] kepek = new PictureBox[8,8];
         static int[,] dama = new int[8, 8];
         static string nev1;
@@ -39,7 +38,7 @@ namespace Damajatek
             InitializeComponent();
             //damak feltöltése fele fehér fele fekete
            damafeltoltes();
-            buttongeneralas();
+           buttongeneralas();
         }
 
         private void damafeltoltes()
@@ -55,64 +54,94 @@ namespace Damajatek
 
         private void buttongeneralas()
         {
+            buttongen(startbutton);
             startbutton.Size = new Size(100, 40);
-            //startbutton.Location = new Point(615, 20);
             startbutton.Location = new Point(600, 20);
             startbutton.Text = "Start";
-            startbutton.Font = new Font("Microsoft Sans Serif", 15);
-            startbutton.BackColor = Color.Tomato;
-            Controls.Add(startbutton);
-            //startbutton.MouseMove += new EventHandler(this.startbutton_MouseMove);
-            startbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
-            startbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
             startbutton.Click += new EventHandler(startbutton_Click);
-            startbutton.BringToFront();
-            //rounded button guna 2 ???
 
+            buttongen(keszitokbutton);
             keszitokbutton.Size = new Size(100, 40);
             keszitokbutton.Location = new Point(600, 310);
             keszitokbutton.Text = "Készítők";
-            keszitokbutton.Font = new Font("Microsoft Sans Serif", 15);
-            keszitokbutton.BackColor = Color.Tomato;
-            Controls.Add(keszitokbutton);
-            keszitokbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
-            keszitokbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
-            keszitokbutton.BringToFront();
-
+            keszitokbutton.Click += new EventHandler(keszitokbutton_Click);
+            
+            buttongen(leirasbutton);
             leirasbutton.Size = new Size(100, 40);
             leirasbutton.Location = new Point(600, 370);
             leirasbutton.Text = "Leírás";
-            leirasbutton.Font = new Font("Microsoft Sans Serif", 15);
-            leirasbutton.BackColor = Color.Tomato;
-            Controls.Add(leirasbutton);
-            leirasbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
-            leirasbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
             leirasbutton.Click += new EventHandler(leirasbutton_Click);
-            leirasbutton.BringToFront();
 
+            buttongen(tovabbbutton);
             tovabbbutton.Size = new Size(100, 40);
             tovabbbutton.Location = new Point(600, 330);
             tovabbbutton.Text = "Tovább";
-            tovabbbutton.Font = new Font("Microsoft Sans Serif", 15);
-            tovabbbutton.BackColor = Color.Tomato;
-            Controls.Add(tovabbbutton);
             tovabbbutton.Visible = false;
-            tovabbbutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
-            tovabbbutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
             tovabbbutton.Click += new EventHandler(tovabbbutton_Click);
-            tovabbbutton.BringToFront();
 
+            buttongen(visszabutton);
             visszabutton.Size = new Size(100, 40);
             visszabutton.Location = new Point(600, 290);
             visszabutton.Text = "Vissza";
-            visszabutton.Font = new Font("Microsoft Sans Serif", 15);
-            visszabutton.BackColor = Color.Tomato;
-            Controls.Add(visszabutton);
             visszabutton.Visible = false;
-            visszabutton.MouseMove += new MouseEventHandler(startbutton_MouseMove);
-            visszabutton.MouseLeave += new EventHandler(startbutton_MouseLeave);
             visszabutton.Click += new EventHandler(tovabbbutton_Click);
-            visszabutton.BringToFront();
+            
+        }
+
+        private void buttongen(RoundedButton button)
+        {
+            button.Font = new Font("Microsoft Sans Serif", 15);
+            button.BackColor = Color.Tomato;
+            Controls.Add(button);
+            button.MouseMove += new MouseEventHandler(startbutton_MouseMove);
+            button.MouseLeave += new EventHandler(startbutton_MouseLeave);
+            button.BringToFront();
+        }
+
+        private void keszitokbutton_Click(object sender, EventArgs e)
+        {
+            if (keszitokbutton.Text == "Készítők")
+            {
+
+                label1.Visible = false;
+                label2.Visible = false;
+                nev1TBOX.Visible = false;
+                nev2TBOX.Visible = false;
+                
+                leirasbutton.Visible = false;
+                startbutton.Visible = false;
+                
+                infoLBL.Visible = false;
+                keszitokbutton.Location = new Point(600, 370);
+                keszitok();
+                keszitokbutton.Text = "Főmenü";
+
+            }
+            else
+            {
+                hanyadik = 0;
+                keszitokbutton.Text = "Készítők";
+                infoLBL.Location = new Point(14, 202);
+                label1.Visible = true;
+                label2.Visible = true;
+                nev1TBOX.Visible = true;
+                nev2TBOX.Visible = true;
+                
+                leirasbutton.Visible = true;
+                startbutton.Visible = true;
+                
+                infoLBL.Visible = true;
+                keszitokbutton.Location = new Point(600, 310);
+                LeirasLBL.Text = "";
+
+            }
+        }
+
+        private void keszitok()
+        {
+            LeirasLBL.Text = "Bodnár András\nFőleg a játék játszhatóságáért volt feleős\n" +
+                "De a játék Design részében is segítkezett.\n\nBodnár Tamás\nA játék design-ért volt felelős.\n\"Úgy érzem sokat tettem" +
+                " hozzá a design hoz de még így is kevésnek érzem\".";
         }
 
         private void tovabbbutton_Click(object sender, EventArgs e)
@@ -132,15 +161,6 @@ namespace Damajatek
                     hanyadik--;
                 }
             }
-            /*
-            if (button.Text=="Tovább")
-            {
-                hanyadik ++;
-            }
-            else
-            {
-                hanyadik--;
-            }*/
             
             kiiras();
             
@@ -164,10 +184,9 @@ namespace Damajatek
                 visszabutton.Visible = true;
                 keszitokbutton.Visible = false;
                 startbutton.Visible = false;
-                infoLBL.Location = new Point(5, 5);
-                infoLBL.Visible = true;
-                //panel1.Visible = false;
-                //panel2.Visible = false;
+                kep1.Visible = true;
+                infoLBL.Visible = false;
+                
                 kiiras();
                 leirasbutton.Text = "Főmenü";
 
@@ -185,19 +204,13 @@ namespace Damajatek
                 visszabutton.Visible = false;
                 keszitokbutton.Visible = true;
                 startbutton.Visible = true;
-                infoLBL.Location = new Point(5, 5);
-                infoLBL.Visible = false;
-                // panel1.Visible = true;
-                //panel2.Visible = true;
+                kep1.Visible = false;
+                infoLBL.Visible = true;
+                
                 LeirasLBL.Text = "";
 
             }
-            //a név beírásos helynek adni backgoundot, frissíteni a designot
-            //button transparent backgound
-            //átmenetes button háttér
-            //loading animation??
-            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
-            // esetleg új Form1 vagy usercontrol
+            
             
         }
 
@@ -206,31 +219,33 @@ namespace Damajatek
             if (hanyadik == 0)
             {
                 LeirasLBL.Text = "A dámában hagyományosan a sötét kezd, de sorsolás vagy megbeszélés alapján is dönthetünk.A játékosok felváltva lépnek egy - egy gyaloggal az alábbiak szerint:Csak átlósan lehet lépni, ugyanolyan színű mezőre, amilyenen a bábu eredetileg is állt.";
-                
+                kep1.Image = Image.FromFile("kep1.jpg");
             }
             if (hanyadik == 1)
             {
                 LeirasLBL.Text = "Nem szabad olyan mezőre lépni, amelyen már van egy másik bábu.A gyalog csak az ellenfél felé(előre léphet), visszafelé nem.A gyalog egyszerre csak egyet léphet.";
-                
+                kep1.Image = Image.FromFile("kep1.jpg");
             }
             if (hanyadik == 2)
             {
 
                 LeirasLBL.Text = " Saját bábut nem lehet sem leütni, sem átugorni.Amikor az ellenfelek bábui „találkoznak”, kétféle helyzet állhat elő:Ha az ellenfél bábuja mögött(ugyanabban az irányban továbbhaladva) van egy üres mező,akkor a játékos a saját bábujával átugorja azt, majd leveszi a tábláról. Ezt nevezik ütésnek.";
+                kep1.Image = Image.FromFile("kep2.jpg");
             }
             if (hanyadik==3)
             {
                 LeirasLBL.Text = "A dámát általában ütéskényszerrel játsszák.A fenti szabályokból következik, hogy abban az esetben viszont,ha az ellenfél bábuja mögött nincs üres mező(mert egy másik bábu áll ott vagy vége van a táblának),akkor nem lehet leütni. Amíg a helyzet nem változik,a játékos ebben az irányban nem tud továbbhaladni.";
-
+                kep1.Image = Image.FromFile("kep2.jpg");
             }
             if (hanyadik==4)
             {
                 LeirasLBL.Text = "Az a gyalog, amely az ellenfél sorfalán áttörve eléri a tábla szemközti oldalát,dámává változik. A dámát láthatóan megkülönböztetik a gyalogoktól – például a korongra rátesznek még egyet a levettek közül,vagy ha sakkfigurákkal játszanak, a gyalogot valamilyen tisztre cserélik.";
-
+                kep1.Image = Image.FromFile("kep2.jpg");
             }
             if (hanyadik==5)
             {
                 LeirasLBL.Text = "A dáma ezután visszafelé is léphet és üthet, de minden más szabályt be kell tartania (saját bábut nem léphet át,olyan mezőre nem léphet, ahol már van egy bábu, stb.). A dámát ugyanúgy le lehet ütni, mint a gyalogot.A játék addig folytatódik, amíg az egyik játékos nem tud lépni – vagy azért,mert minden bábuját levette az ellenfél, vagy azért, mert a maradék bábui közül eggyel sem tud lépni.";
+                kep1.Image = Image.FromFile("kep2.jpg");
             }
     }
 
@@ -667,23 +682,7 @@ namespace Damajatek
             
         }
 
-       /* private void damafeltoltes()
-        {
-            for (int i = 0; i < damak.Length; i++)
-            {
-                damak[i] = new Dama("", false);
-                if (i > damak.Length / 2)
-                {
-                    damak[i].Szin = "feher";
-                    damak[i].Damae = false;
-                }
-                else
-                {
-                    damak[i].Szin = "fekete";
-                    damak[i].Damae = false;
-                }
-            }
-        }*/
+       
 
         class RoundedButton : Button
         {
@@ -721,7 +720,13 @@ namespace Damajatek
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            //guna 2 szép button ok?
+            //a név beírásos helynek adni backgoundot, frissíteni a designot
+            //button transparent backgound
+            //átmenetes button háttér
+            //loading animation??
+            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
+            // esetleg új Form1 vagy usercontrol
 
         }
 
@@ -748,9 +753,8 @@ namespace Damajatek
                 else
                 {
                     infoLBL.Text = "";
-                    keszitokBTN.Visible = false;
-                    leirasBTN.Visible = false;
-                    visszaBTN.Visible = true;
+                    
+                   
                     gametablefeltoltes();
                     tablageneralas();
 
@@ -790,41 +794,6 @@ namespace Damajatek
         {
             button.BackColor = Color.Tomato;
             button.ForeColor = Color.Black;
-        }
-        private void startBTN_MouseMove(object sender, MouseEventArgs e)
-        {
-            mouseEnter(startBTN);
-        }
-
-        private void startBTN_MouseLeave(object sender, EventArgs e)
-        {
-            mouseLeave(startBTN);
-        }
-
-        private void keszitokBTN_MouseLeave(object sender, EventArgs e)
-        {
-            mouseLeave(keszitokBTN);
-        }
-
-        private void keszitokBTN_MouseMove(object sender, MouseEventArgs e)
-        {
-            mouseEnter(keszitokBTN);
-        }
-
-        private void leirasBTN_MouseMove(object sender, MouseEventArgs e)
-        {
-            mouseEnter(leirasBTN);
-        }
-
-        private void leirasBTN_MouseLeave(object sender, EventArgs e)
-        {
-            mouseLeave(leirasBTN);
-        }
-
-        private void startBTN_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-       
+        }  
     }
 }
