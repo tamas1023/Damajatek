@@ -355,10 +355,13 @@ namespace Damajatek
             PictureBox kapcsolt = sender as PictureBox;
             if(feketee)
             {
+                utesvane = false;
                 feketelep(kapcsolt);
+
             }
             else
             {
+                utesvane = false;
                 feherlep(kapcsolt);
             }
         }
@@ -416,7 +419,7 @@ namespace Damajatek
                         MessageBox.Show("nincs ütés: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                         hovai = Convert.ToInt32(kapcsolt.Tag);
                         hovaj = Convert.ToInt32(kapcsolt.Name);
-                        if (Convert.ToInt32(kapcsolt.Tag) == 0)
+                        if (Convert.ToInt32(kapcsolt.Name)==7)
                         {
                             dama[honnani, honnanj] = 0;
                             dama[hovai, hovaj] = -1;
@@ -474,7 +477,7 @@ namespace Damajatek
         {
             if(dama[honnani,honnanj]==1)
             {
-                if(honnani>=2)
+                if(honnani>=2&&honnanj>=2)
                 { 
                 if((dama[honnani-1,honnanj+1]==2|| dama[honnani - 1, honnanj + 1] == -2)&&honnani-1>=0&&honnanj+1<=7&& (dama[honnani - 2, honnanj + 2] == 0 || dama[honnani - 2, honnanj + 2] == 0))
                 {
