@@ -34,20 +34,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.infoLBL = new System.Windows.Forms.Label();
+            this.kep1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LeirasLBL = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.kep1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kep1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kep1)).BeginInit();
             this.SuspendLayout();
             // 
             // nev2TBOX
@@ -76,6 +76,7 @@
             this.label1.Size = new System.Drawing.Size(88, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Első név:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -109,6 +110,15 @@
             this.infoLBL.Name = "infoLBL";
             this.infoLBL.Size = new System.Drawing.Size(0, 20);
             this.infoLBL.TabIndex = 7;
+            // 
+            // kep1
+            // 
+            this.kep1.Location = new System.Drawing.Point(-19, 19);
+            this.kep1.Name = "kep1";
+            this.kep1.Size = new System.Drawing.Size(286, 180);
+            this.kep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.kep1.TabIndex = 8;
+            this.kep1.TabStop = false;
             // 
             // panel2
             // 
@@ -177,15 +187,6 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Visible = false;
             // 
-            // kep1
-            // 
-            this.kep1.Location = new System.Drawing.Point(-19, 19);
-            this.kep1.Name = "kep1";
-            this.kep1.Size = new System.Drawing.Size(286, 180);
-            this.kep1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.kep1.TabIndex = 8;
-            this.kep1.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -200,13 +201,13 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kep1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kep1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

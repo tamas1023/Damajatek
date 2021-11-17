@@ -479,15 +479,15 @@ namespace Damajatek
             {
                 hovai = Convert.ToInt32(kapcsolt.Tag);
                 hovaj = Convert.ToInt32(kapcsolt.Name);
-                if((honnani-2==hovai||hovai-2==honnani)&&(honnanj-2==hovaj||hovaj-2==honnanj))
+                if((honnani-2==hovai||hovai-2==honnani)&&(honnanj-2==hovaj||hovaj-2==honnanj)&&hovai<=5&&honnani>=2)
                 { 
-                    if(dama[hovai+1,hovaj-1]==2|| dama[hovai + 1, hovaj - 1] == -2&& dama[hovai, hovaj] == 0)
+                    if((dama[hovai+1,hovaj-1]==2|| dama[hovai + 1, hovaj - 1] == -2)&& dama[hovai, hovaj] == 0)
                     { 
                             hovai = Convert.ToInt32(kapcsolt.Tag);
                             hovaj = Convert.ToInt32(kapcsolt.Name);
                             MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
 
-                            if (Convert.ToInt32(kapcsolt.Tag) == 7)
+                            if (Convert.ToInt32(kapcsolt.Name) == 7)
                             {
                                 dama[honnani, honnanj] = 0;
                                 dama[honnani - 1, honnanj + 1] = 0;
@@ -512,15 +512,15 @@ namespace Damajatek
                         utesvane = true;
                     }
                 }
-                if ((honnani - 2 == hovai || hovai - 2 == honnani) && (honnanj - 2 == hovaj || hovaj - 2 == honnanj))
+                if (!utesvane&&(honnani - 2 == hovai || hovai - 2 == honnani) && (honnanj - 2 == hovaj || hovaj - 2 == honnanj)&&hovai>=2)
                 {
-                    if (dama[hovai - 1, hovaj - 1] == 2 || dama[hovai - 1, hovaj - 1] == -2 && dama[hovai, hovaj] == 0)
+                    if ((dama[hovai - 1, hovaj - 1] == 2 || dama[hovai - 1, hovaj - 1] == -2) && dama[hovai, hovaj] == 0)
                     {
                         MessageBox.Show("vanütés-jobra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
 
                         hovai = Convert.ToInt32(kapcsolt.Tag);
                         hovaj = Convert.ToInt32(kapcsolt.Name);
-                        if (Convert.ToInt32(kapcsolt.Tag) == 7)
+                        if (Convert.ToInt32(kapcsolt.Name) == 7)
                         {
                             dama[honnani, honnanj] = 0;
                             dama[honnani + 1, honnanj + 1] = 0;
@@ -548,14 +548,15 @@ namespace Damajatek
             }
             if (dama[honnani, honnanj] == 2)
             {
-                if (honnani >= 2 && honnanj >= 2)
+               hovai = Convert.ToInt32(kapcsolt.Tag);
+               hovaj = Convert.ToInt32(kapcsolt.Name);
+                if ((honnani - 2 == hovai || hovai - 2 == honnani) && (honnanj - 2 == hovaj || hovaj - 2 == honnanj)&&hovai<=5&& honnani >= 2)
                 {
-                    if ((dama[honnani - 1, honnanj - 1] == 1 || dama[honnani - 1, honnanj - 1] == -1) && honnani - 1 >= 0 && honnanj + 1 <= 7 && (dama[honnani - 2, honnanj - 2] == 0 || dama[honnani - 2, honnanj - 2] == 0))
+                    if ((dama[hovai + 1, hovaj + 1] == 1 || dama[hovai + 1, hovaj + 1] == -1) &&dama[hovai, hovaj] == 0)
                     {
-                        if (Convert.ToInt32(kapcsolt.Tag) == honnani - 2 && Convert.ToInt32(kapcsolt.Name) == honnanj - 2)
-                        {
-                            hovai = Convert.ToInt32(kapcsolt.Tag);
-                            hovaj = Convert.ToInt32(kapcsolt.Name);
+                       
+                          //  hovai = Convert.ToInt32(kapcsolt.Tag);
+                          //  hovaj = Convert.ToInt32(kapcsolt.Name);
                             MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                             if (Convert.ToInt32(kapcsolt.Name) == 0)
                             {
@@ -580,43 +581,43 @@ namespace Damajatek
 
                             kapcs = true;
                             feketee = false;
-                        }
                         utesvane = true;
                     }
                 }
-                if (honnani >= 2 && honnanj >= 2)
+
+               // hovai = Convert.ToInt32(kapcsolt.Tag);
+               // hovaj = Convert.ToInt32(kapcsolt.Name);
+                if (!utesvane && (honnani - 2 == hovai || hovai - 2 == honnani) && (honnanj - 2 == hovaj || hovaj - 2 == honnanj))
                 {
-                    if ((dama[honnani + 1, honnanj - 1] == 1 || dama[honnani + 1, honnanj - 1] == -1) && honnanj + 1 <= 7 && honnani + 1 <= 7 && (dama[honnani + 2, honnanj - 2] == 0 || dama[honnani + 2, honnanj - 2] == 0))
+
+                    if ((dama[hovai - 1, hovaj + 1] == 1 || dama[hovai + 1, hovaj + 1] == -1) &&dama[hovai, hovaj] == 0)
                     {
-                        if (Convert.ToInt32(kapcsolt.Tag) == honnani + 2 && Convert.ToInt32(kapcsolt.Name) == honnanj - 2)
+                        //hovai = Convert.ToInt32(kapcsolt.Tag);
+                        //hovaj = Convert.ToInt32(kapcsolt.Name);
+                        MessageBox.Show("vanütés-jobbra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                        if (Convert.ToInt32(kapcsolt.Name) == 0)
                         {
-                            hovai = Convert.ToInt32(kapcsolt.Tag);
-                            hovaj = Convert.ToInt32(kapcsolt.Name);
-                            MessageBox.Show("vanütés-jobbra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
-                            if (Convert.ToInt32(kapcsolt.Name) == 0)
-                            {
-                                dama[honnani + 1, honnanj - 1] = 0;
-                                kepek[honnani + 1, honnanj - 1].Image = null;
+                            dama[honnani + 1, honnanj - 1] = 0;
+                            kepek[honnani + 1, honnanj - 1].Image = null;
 
-                                dama[honnani, honnanj] = 0;
-                                dama[hovai, hovaj] = -2;
-                                kapcsolt.Image = Image.FromFile("feketed.png");
-                                kepek[honnani, honnanj].Image = null;
-                            }
-                            else
-                            {
-                                dama[honnani + 1, honnanj - 1] = 0;
-                                kepek[honnani + 1, honnanj - 1].Image = null;
-
-                                dama[honnani, honnanj] = 0;
-                                dama[hovai, hovaj] = 2;
-                                kapcsolt.Image = Image.FromFile("fekete.png");
-                                kepek[honnani, honnanj].Image = null;
-                            }
-
-                            kapcs = true;
-                            feketee = false;
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = -2;
+                            kapcsolt.Image = Image.FromFile("feketed.png");
+                            kepek[honnani, honnanj].Image = null;
                         }
+                        else
+                        {
+                            dama[honnani + 1, honnanj - 1] = 0;
+                            kepek[honnani + 1, honnanj - 1].Image = null;
+
+                            dama[honnani, honnanj] = 0;
+                            dama[hovai, hovaj] = 2;
+                            kapcsolt.Image = Image.FromFile("fekete.png");
+                            kepek[honnani, honnanj].Image = null;
+                        }
+
+                        kapcs = true;
+                        feketee = false;
                         utesvane = true;
                     }
                 }
@@ -825,6 +826,11 @@ namespace Damajatek
         {
             button.BackColor = Color.Tomato;
             button.ForeColor = Color.Black;
-        }  
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
