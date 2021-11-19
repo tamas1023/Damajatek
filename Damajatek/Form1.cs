@@ -13,6 +13,7 @@ namespace Damajatek
 {
     public partial class Form1 : Form
     {
+        bool leheteutni = false;
         static bool utesvane = false;
        static bool feketee=true; 
         static int menyikkep;
@@ -306,11 +307,11 @@ namespace Damajatek
                         }
                         if (db2 % 2 == 0)
                         {
-                            kep.Image = Image.FromFile("fekete.png");
+                            kep.Image = Image.FromFile("feketed.png");
                            // gametable[i, j] = egyadat;
                           //  gametable[i, j].Szin = "fekete";
                            // gametable[i, j].Damae = false;
-                            dama[i, j] = 2;
+                            dama[i, j] = -2;
                         }
                     }
                     if (i%2==0)
@@ -651,16 +652,48 @@ namespace Damajatek
                 MessageBox.Show("asd: "+ Convert.ToInt32(kapcsolt.Tag)+","+Convert.ToInt32(kapcsolt.Name));
                 honnani = Convert.ToInt32(kapcsolt.Tag);
                 honnanj = Convert.ToInt32(kapcsolt.Name);
-                menyik(); 
+                menyik();
+                visszaallit();
+                lepesVutesdama(kapcsolt);
             }
             else if(kapcs && kapcsolt.Image == null)
             {
                 kapcs = false;
+                
                 vaneutessima(kapcsolt);
             }
             if(dama[honnani,honnanj]==-2)
             {
-                if (!kapcs && kapcsolt.Image == null && ((Convert.ToInt32(kapcsolt.Tag) % 2 == 0 && Convert.ToInt32(kapcsolt.Name) % 2 == 0) || (Convert.ToInt32(kapcsolt.Tag) % 2 == 1 && Convert.ToInt32(kapcsolt.Name) % 2 == 1)) && (((Convert.ToInt32(kapcsolt.Tag) - honnani == (Convert.ToInt32(kapcsolt.Name) - honnanj))) || (( honnani- Convert.ToInt32(kapcsolt.Tag) == (honnanj-Convert.ToInt32(kapcsolt.Name))))))
+                leheteutni = false;
+                for (int i = 0; i <= 7; i++)
+                {
+                    for (int j = 0; j <= 7; j++)
+                    {
+                        if(kepek[i, j].BackColor == Color.Brown)
+                        {
+                            leheteutni = true;
+                        }
+                    }
+                }
+                if(leheteutni)
+                { 
+                    for (int i = 0; i <= 7; i++)
+                    {
+                        for (int j = 0; j <= 7; j++)
+                        {
+                            if (kepek[i, j].BackColor == Color.Red)
+                            {
+                                kepek[i,j].BackColor=Color.White;
+                            }
+
+                        }
+                    }
+                }
+                if (!kapcs&&kapcsolt.Image==null&&kapcsolt.BackColor==Color.Brown&&leheteutni)
+                {
+                    feketedamautes(kapcsolt);
+                }
+                if (!kapcs && kapcsolt.Image == null &&kapcsolt.BackColor==Color.Red&&!leheteutni)
                 {
 
                    MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
@@ -677,7 +710,7 @@ namespace Damajatek
                     {
                         lepes(kapcsolt);
                     }
-
+                    visszaallit();
                     kapcs = true;
                     feketee = false;
                     utesvane = false;
@@ -714,7 +747,252 @@ namespace Damajatek
             
         }
 
-       
+        private void feketedamautes(PictureBox kapcsolt)
+        {
+            hovai = Convert.ToInt32(kapcsolt.Tag);
+            hovaj = Convert.ToInt32(kapcsolt.Name);
+            int i = 0;
+            int j = 0;
+            i = honnani-hovai;
+            j =honnanj-hovaj;
+            if(i<0&&j>0)
+            {
+                dama[hovai - 1, hovaj + 1] = 0;
+                kepek[hovai - 1, hovaj + 1].Image = null;
+
+                dama[honnani, honnanj] = 0;
+                dama[hovai, hovaj] = -2;
+                kapcsolt.Image = Image.FromFile("feketed.png");
+                kepek[honnani, honnanj].Image = null;
+
+            }
+            if (i > 0 && j > 0)
+            {
+                dama[hovai + 1, hovaj + 1] = 0;
+                kepek[hovai + 1, hovaj + 1].Image = null;
+
+                dama[honnani, honnanj] = 0;
+                dama[hovai, hovaj] = -2;
+                kapcsolt.Image = Image.FromFile("feketed.png");
+                kepek[honnani, honnanj].Image = null;
+
+            }
+            if (i < 0 && j < 0)
+            {
+                dama[hovai - 1, hovaj - 1] = 0;
+                kepek[hovai - 1, hovaj - 1].Image = null;
+
+                dama[honnani, honnanj] = 0;
+                dama[hovai, hovaj] = -2;
+                kapcsolt.Image = Image.FromFile("feketed.png");
+                kepek[honnani, honnanj].Image = null;
+
+            }
+            if (i > 0 && j < 0)
+            {
+                dama[hovai + 1, hovaj - 1] = 0;
+                kepek[hovai + 1, hovaj - 1].Image = null;
+
+                dama[honnani, honnanj] = 0;
+                dama[hovai, hovaj] = -2;
+                kapcsolt.Image = Image.FromFile("feketed.png");
+                kepek[honnani, honnanj].Image = null;
+
+            }
+            visszaallit();
+            kapcs = true;
+            feketee = false;
+            utesvane = false;
+        }
+
+        private void visszaallit()
+        {
+            for (int i = 0; i <= 7; i++)
+            {
+                for (int j = 0; j <= 7; j++)
+                {
+                    if(kepek[i,j].BackColor==Color.Red)
+                    {
+                        kepek[i, j].BackColor = Color.White;
+                    }
+                    if(kepek[i,j].BackColor==Color.Brown)
+                    {
+                        kepek[i, j].BackColor = Color.White;
+                    }
+                }
+            }
+        }
+
+        private void lepesVutesdama(PictureBox kapcsolt)
+        {
+            if(dama[honnani,honnanj]==-1)
+            {
+
+            }
+           if(dama[honnani, honnanj] == -2)
+            {
+                int i = honnani;
+                int j = honnanj;
+
+                balrafel(i,j);
+                balrale(i,j);
+                jobbrafel(i,j);
+               jobbrale(i, j);
+               
+                   
+            }
+        }
+
+        private void jobbrale(int i, int j)
+        {
+            i++;
+            j++;
+
+            bool kilepes = true;
+            if (j > 7 || i > 7)
+            {
+                kilepes = false;
+            }
+            while (kilepes)
+            {
+                if (dama[i, j] == 0)
+                {
+                    kepek[i, j].BackColor = Color.Red;
+                }
+                if (dama[i, j] == 2 || dama[i, j] == -2)
+                {
+                    kilepes = false;
+                }
+                if (i + 1 <= 7 && j + 1 <= 7)
+                {
+                    if ((dama[i, j] == 1 || dama[i, j] == -1) && dama[i + 1, j + 1] == 0)
+                    {
+                        kepek[i + 1, j + 1].BackColor = Color.Brown;
+                        kilepes = false;
+                    }
+                }
+
+                if (j == 7 || i == 7)
+                {
+                    kilepes = false;
+                }
+                i++;
+                j++;
+            }
+        }
+
+        private void jobbrafel(int i, int j)
+        {
+            i += 1;
+            j--;
+
+            bool kilepes = true;
+            if (j < 0 || i > 7)
+            {
+                kilepes = false;
+            }
+            while (kilepes)
+            {
+                if (dama[i, j] == 0)
+                {
+                    kepek[i, j].BackColor = Color.Red;
+                }
+                if (dama[i, j] == 2 || dama[i, j] == -2)
+                {
+                    kilepes = false;
+                }
+                if (i + 1 <= 7 && j - 1 >= 0)
+                {
+                    if ((dama[i, j] == 1 || dama[i, j] == -1) && dama[i + 1, j - 1] == 0)
+                    {
+                        kepek[i + 1, j - 1].BackColor = Color.Brown;
+                        kilepes = false;
+                    }
+                }
+
+                if (j == 0 || i == 7)
+                {
+                    kilepes = false;
+                }
+                i++;
+                j--;
+            }
+
+        }
+
+        private void balrale(int i, int j)
+        {
+            i -= 1;
+            j ++;
+            bool kilepes = true;
+            if(j>7||i<0)
+            {
+                kilepes = false;
+            }
+            while (kilepes)
+            {
+                if (dama[i, j] == 0)
+                {
+                    kepek[i, j].BackColor = Color.Red;
+                }
+                if (dama[i, j] == 2 || dama[i, j] == -2)
+                {
+                    kilepes = false;
+                }
+                if (i - 1 >= 0 && j + 1 <= 7)
+                {
+                    if ((dama[i, j] == 1 || dama[i, j] == -1) && dama[i - 1, j + 1] == 0)
+                    {
+                        kepek[i - 1, j + 1].BackColor = Color.Brown;
+                        kilepes = false;
+                    }
+                }
+
+                if (j == 7 || i == 0)
+                {
+                    kilepes = false;
+                }
+                i--;
+                j++;
+            }
+        }
+
+        private void balrafel(int i, int j)
+        {
+            i -= 1;
+            j -= 1;
+            bool kilepes = true;
+            if(i<0||j<0)
+            {
+                kilepes = false;
+            }
+            while (kilepes)
+            {
+                if (dama[i, j] == 0)
+                {
+                    kepek[i, j].BackColor = Color.Red;
+                }
+                if (dama[i, j] == 2 || dama[i, j] == -2)
+                {
+                    kilepes = false;
+                }
+                if(i-1>=0&&j-1>=0)
+                {
+                    if ((dama[i, j] == 1 || dama[i, j] == -1) && dama[i - 1, j - 1] == 0)
+                    {
+                        kepek[i - 1, j - 1].BackColor = Color.Brown;
+                        kilepes = false;
+                    }
+                }
+                
+                if (j == 0 || i == 0)
+                {
+                    kilepes = false;
+                }
+                i--;
+                j--;
+            }
+        }
 
         class RoundedButton : Button
         {
