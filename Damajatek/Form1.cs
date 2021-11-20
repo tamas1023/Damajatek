@@ -268,19 +268,13 @@ namespace Damajatek
             int db2 = 0;
             for (int i = 0; i < 8; i++)
             {
-                //i megy soronként
                 for (int j = 0; j < 8; j++)
                 {
-                   
-                    // j megyoszloponként
                     PictureBox kep = new PictureBox();
                     kep.Location = new System.Drawing.Point(20+(i*50),20+(j*50));
                     kep.Name =j+"";
                     kep.Visible = true;
                     kep.Size = new System.Drawing.Size(50, 50);
-                   // gametable[i, j] = egyadat;
-                   // gametable[i, j].Szin = "f";
-                   // gametable[i, j].Damae = false;
                     if (j<=2&&j>=0)
                     {
                         db++;
@@ -290,11 +284,8 @@ namespace Damajatek
                         }
                         if(db%2==1)
                         {
-                            kep.Image = Image.FromFile("feherd.png");
-                           // gametable[i, j] = egyadat;
-                           // gametable[i, j].Szin = "feher";
-                           // gametable[i, j].Damae = false;
-                            dama[i, j] = -1;
+                            kep.Image = Image.FromFile("feher.png");
+                            dama[i, j] = 1;
                         }
                        
                     }
@@ -307,11 +298,8 @@ namespace Damajatek
                         }
                         if (db2 % 2 == 0)
                         {
-                            kep.Image = Image.FromFile("feketed.png");
-                           // gametable[i, j] = egyadat;
-                          //  gametable[i, j].Szin = "fekete";
-                           // gametable[i, j].Damae = false;
-                            dama[i, j] = -2;
+                            kep.Image = Image.FromFile("fekete.png");
+                            dama[i, j] = 2;
                         }
                     }
                     if (i%2==0)
@@ -341,9 +329,6 @@ namespace Damajatek
                     kep.SizeMode = PictureBoxSizeMode.StretchImage;
                     Controls.Add(kep);
                     kepek[i, j] = kep;
-                  
-                    //kep.BringToFront();
-
                     kep.Click += new System.EventHandler(this.palyaklikk);
                 }
             }
@@ -374,7 +359,6 @@ namespace Damajatek
             if (kapcs && dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 1|| dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == -1)
             {
 
-                MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
                 honnani = Convert.ToInt32(kapcsolt.Tag);
                 honnanj = Convert.ToInt32(kapcsolt.Name);
                 menyik();
@@ -421,7 +405,7 @@ namespace Damajatek
                 if (!kapcs && kapcsolt.Image == null && kapcsolt.BackColor == Color.Red && !leheteutni)
                 {
 
-                    MessageBox.Show("damafeher: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                    
                     hovai = Convert.ToInt32(kapcsolt.Tag);
                     hovaj = Convert.ToInt32(kapcsolt.Name);
                     if (Convert.ToInt32(kapcsolt.Tag) == 0)
@@ -449,7 +433,7 @@ namespace Damajatek
                     if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj + 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
                     {
 
-                        MessageBox.Show("nincs ütés: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                        
                         hovai = Convert.ToInt32(kapcsolt.Tag);
                         hovaj = Convert.ToInt32(kapcsolt.Name);
                         if (Convert.ToInt32(kapcsolt.Name)==7)
@@ -576,7 +560,7 @@ namespace Damajatek
                     { 
                             hovai = Convert.ToInt32(kapcsolt.Tag);
                             hovaj = Convert.ToInt32(kapcsolt.Name);
-                            MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                         
 
                             if (Convert.ToInt32(kapcsolt.Name) == 7)
                             {
@@ -607,7 +591,7 @@ namespace Damajatek
                 {
                     if ((dama[hovai - 1, hovaj - 1] == 2 || dama[hovai - 1, hovaj - 1] == -2) && dama[hovai, hovaj] == 0)
                     {
-                        MessageBox.Show("vanütés-jobra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                      
 
                         hovai = Convert.ToInt32(kapcsolt.Tag);
                         hovaj = Convert.ToInt32(kapcsolt.Name);
@@ -645,10 +629,7 @@ namespace Damajatek
                 {
                     if ((dama[hovai + 1, hovaj + 1] == 1 || dama[hovai + 1, hovaj + 1] == -1) &&dama[hovai, hovaj] == 0)
                     {
-                       
-                          //  hovai = Convert.ToInt32(kapcsolt.Tag);
-                          //  hovaj = Convert.ToInt32(kapcsolt.Name);
-                            MessageBox.Show("vanütés-balra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                      
                             if (Convert.ToInt32(kapcsolt.Name) == 0)
                             {
                                 dama[honnani - 1, honnanj - 1] = 0;
@@ -676,16 +657,13 @@ namespace Damajatek
                     }
                 }
 
-               // hovai = Convert.ToInt32(kapcsolt.Tag);
-               // hovaj = Convert.ToInt32(kapcsolt.Name);
+           
                 if (!utesvane && (honnani - 2 == hovai || hovai - 2 == honnani) && (honnanj - 2 == hovaj || hovaj - 2 == honnanj))
                 {
 
                     if ((dama[hovai - 1, hovaj + 1] == 1 || dama[hovai + 1, hovaj + 1] == -1) &&dama[hovai, hovaj] == 0)
                     {
-                        //hovai = Convert.ToInt32(kapcsolt.Tag);
-                        //hovaj = Convert.ToInt32(kapcsolt.Name);
-                        MessageBox.Show("vanütés-jobbra: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                       
                         if (Convert.ToInt32(kapcsolt.Name) == 0)
                         {
                             dama[honnani + 1, honnanj - 1] = 0;
@@ -739,7 +717,7 @@ namespace Damajatek
             if (kapcs&& dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == 2|| dama[Convert.ToInt32(kapcsolt.Tag), Convert.ToInt32(kapcsolt.Name)] == -2)
             {
 
-                MessageBox.Show("asd: "+ Convert.ToInt32(kapcsolt.Tag)+","+Convert.ToInt32(kapcsolt.Name));
+              
                 honnani = Convert.ToInt32(kapcsolt.Tag);
                 honnanj = Convert.ToInt32(kapcsolt.Name);
                 menyik();
@@ -786,7 +764,7 @@ namespace Damajatek
                 if (!kapcs && kapcsolt.Image == null &&kapcsolt.BackColor==Color.Red&&!leheteutni)
                 {
 
-                   MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                
                     hovai = Convert.ToInt32(kapcsolt.Tag);
                     hovaj = Convert.ToInt32(kapcsolt.Name);
                     if (Convert.ToInt32(kapcsolt.Name) == 0)
@@ -813,7 +791,7 @@ namespace Damajatek
                     if (!kapcs && kapcsolt.Image == null && Convert.ToInt32(kapcsolt.Name) == honnanj - 1 && ((Convert.ToInt32(kapcsolt.Tag) == honnani + 1 || Convert.ToInt32(kapcsolt.Tag) == honnani - 1)))
                     {
 
-                        MessageBox.Show("asd: " + Convert.ToInt32(kapcsolt.Tag) + "," + Convert.ToInt32(kapcsolt.Name));
+                      
                         hovai = Convert.ToInt32(kapcsolt.Tag);
                         hovaj = Convert.ToInt32(kapcsolt.Name);
                         if (Convert.ToInt32(kapcsolt.Name) == 0)
