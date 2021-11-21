@@ -29,6 +29,8 @@ namespace Damajatek
         static RoundedButton leirasbutton = new RoundedButton();
         static RoundedButton tovabbbutton = new RoundedButton();
         static RoundedButton visszabutton = new RoundedButton();
+        static RoundedButton restartbutton = new RoundedButton();
+
         
         static PictureBox[,] kepek = new PictureBox[8,8];
         static int[,] dama = new int[8, 8];
@@ -86,7 +88,20 @@ namespace Damajatek
             visszabutton.Text = "Vissza";
             visszabutton.Visible = false;
             visszabutton.Click += new EventHandler(tovabbbutton_Click);
+
+            buttongen(restartbutton);
+            restartbutton.Size = new Size(100, 40);
+            restartbutton.Location = new Point(600, 290);
+            restartbutton.Text = "Restart";
+            restartbutton.Visible = false;
+            restartbutton.Click += new EventHandler(restartbutton_Click);
             
+
+        }
+
+        private void restartbutton_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
 
         private void buttongen(RoundedButton button)
@@ -333,7 +348,7 @@ namespace Damajatek
                 }
             }
             panel2.SendToBack();
-            pictureBox4.BringToFront();
+            
         }
 
         private void palyaklikk(object sender, EventArgs e)
@@ -342,12 +357,15 @@ namespace Damajatek
             if(feketee)
             {
                 utesvane = false;
+                
                 feketelep(kapcsolt);
+                
 
             }
             else
             {
                 utesvane = false;
+                
                 feherlep(kapcsolt);
             }
         }
@@ -526,24 +544,36 @@ namespace Damajatek
                     dama[hovai, hovaj] = 1;
                     kapcsolt.Image = Image.FromFile("feher.png");
                     kepek[honnani, honnanj].Image = null;
+                    nev1TBOX.BackColor = Color.Turquoise;
+                    nev2TBOX.BackColor = Color.White;
+
                     break;
                 case -1:
                     dama[honnani, honnanj] = 0;
                     dama[hovai, hovaj] = -1;
                     kapcsolt.Image = Image.FromFile("feherd.png");
                     kepek[honnani, honnanj].Image = null;
+                    nev1TBOX.BackColor = Color.Turquoise;
+                    nev2TBOX.BackColor = Color.White;
+
                     break;
                 case 2:
                     dama[honnani, honnanj] = 0;
                     dama[hovai, hovaj] = 2;
                     kapcsolt.Image = Image.FromFile("fekete.png");
-                    kepek[honnani, honnanj].Image = null;
+                    kepek[honnani, honnanj].Image = null; 
+                    nev2TBOX.BackColor = Color.Turquoise;
+                    nev1TBOX.BackColor = Color.White;
+
                     break;
                 case -2:
                     dama[honnani, honnanj] = 0;
                     dama[hovai, hovaj] = -2;
                     kapcsolt.Image = Image.FromFile("feketed.png");
                     kepek[honnani, honnanj].Image = null;
+                    nev2TBOX.BackColor = Color.Turquoise;
+                    nev1TBOX.BackColor = Color.White;
+
                     break;
             }
         }
@@ -1281,13 +1311,7 @@ namespace Damajatek
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            //guna 2 szép button ok?
-            //a név beírásos helynek adni backgoundot, frissíteni a designot
-            //button transparent backgound
-            //átmenetes button háttér
-            //loading animation??
-            //Több mondatos leírást tagolni, képekkel segíteni, léptetni a több mondatos leírások között
-            // esetleg új Form1 vagy usercontrol
+            
 
         }
 
@@ -1314,8 +1338,10 @@ namespace Damajatek
                 else
                 {
                     infoLBL.Text = "";
-                    
-                   
+                    keszitokbutton.Visible = false;
+                    leirasbutton.Visible = false;
+                    restartbutton.Visible = true;
+                    nev1TBOX.BackColor = Color.Turquoise;
                     gametablefeltoltes();
                     tablageneralas();
 
